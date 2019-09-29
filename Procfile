@@ -1,0 +1,1 @@
+web: python manage.py collectstatic --no-input; gunicorn djangoprj1.wsgi --log-file - --log-level debug
