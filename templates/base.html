@@ -27,19 +27,22 @@
                             <a class="nav-link" href="{% url 'app1:index' %}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'app1:postslist' %}">Posts</a>
+                            <a class="nav-link" href="{% url 'app1:postslist' %}">Issues to Fix</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" href="#">Feature Requests</a>
                         </li>
                     </ul>
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Logout</a>
-                        <a class="nav-item nav-link" href=""><i class="fa fa-shopping-cart" ></i></a>
+                        <span class="navbar-text mr-5 " >
+                                You are now logged in as {{user.username | capfirst}}
+                        </span>
+                        <a class="nav-item nav-link mr-3" href="{% url 'accounts:logout' %}">Logout</a>
+                        <a class="nav-item nav-link mr-3" href=""><i class="fa fa-shopping-cart" ></i></a>
                         {% else %}
-                        <a class="nav-item nav-link" href="{% url 'accounts:login' %}">Login</a>
-                        <a class="nav-item nav-link" href="{% url 'accounts:register' %}">Register</a>
+                        <a class="nav-item nav-link mr-3" href="{% url 'accounts:login' %}">Login</a>
+                        <a class="nav-item nav-link mr-3" href="{% url 'accounts:register' %}">Register</a>
                     </div>
                     {%endif%}
                 </div>

@@ -1,11 +1,75 @@
 {% extends 'base.html' %} 
-{% block content %}
 
-{%if messages%} 
-{%for message in messages%}
-    <div class="alert alert-{{message.tags}}">{{message}}</div>
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="card">
+        {%if messages%} 
+        {%for message in messages%}
+            <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+        {% endif %}
+        </div>
+</div>
+{% for userpost in userpost %}
+<div class="container">
+  
+<div class="card ">
+        <div class="card-header text-center">
+          <h4><a  class="link-name" href="{% url 'app1:postdetail' userpost.id %}">{{userpost.name}}</a></h4>
+        </div>
+</div>
+<ul class="list-group ">
+        <li class="list-group-item">Post Author: <strong>{{userpost.author|capfirst}}</strong></li>
+        <li class="list-group-item">Post Name: <strong>{{userpost.name}}</strong></li>
+        <li class="list-group-item">Post Votes :<strong> {{userpost.votes}}</strong></li>
+      </ul>
+      <br>
+      <br>
+    </div>
 {% endfor %}
-{% endif %}
-<h2>Postslist</h2>
-<a href="{% url 'app1:postdetail' %}">Details</a>
+<br>
+
+
+<div class="container center-pagination">
+<nav aria-label="custom-navigation ">
+    <ul class="pagination ">
+     {% if userpost.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ userpost.previous_page_number }}">Previous</a></li>
+      {% endif %}
+      <li class="page-item active">
+          <a class="page-link" href="#">Page {{ userpost.number }}</a>
+        </li>
+      {% if userpost.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ userpost.next_page_number }}">Next</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+
+
+<div class="container form-container">
+<div class="card">
+        <div class="card-header text-center">
+          <h4>Post a problem that you discovered</h4>
+        </div>
+        <div class="card-body text-center">
+          
+          <form method="POST" >
+                {% csrf_token %}
+                {{form | crispy }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+         
+        </div>
+      </div>
+    </div>
+      <br>
+      <br>
+
 {% endblock %}

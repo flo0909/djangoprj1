@@ -24,7 +24,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You are now logged out!')
-    return redirect(reverse('app1:postslist'))
+    return redirect(reverse('app1:index'))
 
 def register(request):
     if request.user.is_authenticated:
