@@ -1,4 +1,28 @@
-body{
-    background-color: rgb(31, 22, 63);
-    color:rgb(255, 255, 255);
+.one{
+    background-color:rgb(204, 188, 163);
+    height:30rem;
+    margin:1rem;
 }
+.one:hover{
+    background-color: rgb(228, 211, 177)
+}
+.two{
+    background-color:rgb(135, 177, 148);
+    height:30rem;
+    margin:1rem;
+}
+.two:hover{
+    background-color:rgb(177, 219, 190);
+}
+.landing-cards{
+    margin-top:8rem;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(236, 236, 236);
+    color: rgb(0, 0, 0);
+    text-align: center;
+ }
