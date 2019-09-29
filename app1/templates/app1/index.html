@@ -1,7 +1,13 @@
 
 {% extends 'base.html' %} 
 {% block content %}
-
+<div class="container">
+    <div class="row">
+        <span class="center-info col-xs-12">Here you can choose wether to request for a fix or a feature. If you have discovered a bug in the application please use the "Requests" section for FREE!
+            If you want us to develop a new feature please navigate to "Features" page.
+        </span>
+    </div>
+</div>
 
 <div class="container">
         <div class="row">
@@ -9,7 +15,7 @@
                 <div class="card-body text-center landing-cards">
                     <h5 class="card-title">An per reformidans consectetuer, cibo lobortis maluisset ius an.</h5>
                     <p class="card-text">An per reformidans consectetuer, cibo lobortis maluisset ius an </p>
-                    <a href="#" class="btn btn-primary stretched-link">Go to Requests</a>
+                    <a href="{% url 'app1:postslist' %}" class="btn btn-primary stretched-link">Go to Requests</a>
                 </div>
             </div>
             <div class="two card col-xs-10 col-sm-10 col-md-5 col-lg-5">
