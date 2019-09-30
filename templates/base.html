@@ -30,7 +30,7 @@
                             <a class="nav-link" href="{% url 'app1:postslist' %}">Issues to Fix</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Feature Requests</a>
+                            <a class="nav-link" href="{% url 'feature:ticketlist' %}">Feature Requests</a>
                         </li>
                     </ul>
                     <div class="navbar-nav">
@@ -49,7 +49,7 @@
             </nav>
 
     {% block content %}{% endblock %}
-
+ 
     <footer class="footer">
             <span >&copy Lorem Ipsum 2019</span>
     </footer>  

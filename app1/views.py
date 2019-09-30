@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, reverse
-from .models import UserPost
-from .forms import PostForm
+from .models import UserPost, Answer
+from .forms import PostForm, AnswerForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import auth , messages
 from django.core.paginator import Paginator
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def index(request):
@@ -29,8 +30,13 @@ def postslist(request):
 
 @login_required
 def postdetail(request, userpost_id):
+    answer = 'There is no answer yet'
     userpost = get_object_or_404(UserPost, pk=userpost_id)
-    return render(request, 'app1/postdetail.html', {'userpost':userpost})
+    try:
+        answer = Answer.objects.get(name=userpost.name)
+    except ObjectDoesNotExist:
+        pass
+    return render(request, 'app1/postdetail.html', {'userpost':userpost, 'answer':answer})
 
 @login_required
 def deleteuserpost(request, userpost_id):
@@ -76,3 +82,16 @@ def postresult(request, userpost_id):
             userpost.save()
 
     return redirect(reverse('app1:postdetail', args=(userpost.id,)))
+
+def answer(request, userpost_id):
+    answer = []
+    form = AnswerForm(request.POST)
+    userpost = get_object_or_404(UserPost, pk=userpost_id)
+    try:
+        answer = Answer.objects.get(name=userpost.name)
+    except ObjectDoesNotExist:
+        form = AnswerForm(request.POST)
+        if request.method == 'POST':
+            answer = Answer.objects.create(name=userpost.name, content=request.POST['content'])
+            return redirect(reverse('app1:postslist'))
+    return render(request, 'app1/postanswer.html', {'form':form, 'answer':answer, 'userpost':userpost})

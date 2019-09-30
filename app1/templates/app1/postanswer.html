@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container detail-card">
+    <div class="card" >
+  
+   <div class="card-header text-center">Answer to This Post: <strong>{{userpost}}</strong></div>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+ <div class="mx-auto text-center">                  
+<form method="POST" >
+    {% csrf_token %}
+    {{form | crispy }}
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+</div> 
+
+</li>
+</ul>
+   </div>
+    </div>
+
+    <div class="row ">
+            <a class="btn btn-secondary sec-back mx-auto" href="{% url 'app1:postslist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
+          </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

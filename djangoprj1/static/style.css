@@ -2,6 +2,8 @@
     background-color:rgb(204, 188, 163);
     height:30rem;
     margin:1rem;
+    
+    
 }
 .one:hover{
     background-color: rgb(228, 211, 177)
@@ -10,6 +12,7 @@
     background-color:rgb(135, 177, 148);
     height:30rem;
     margin:1rem;
+    
 }
 .two:hover{
     background-color:rgb(177, 219, 190);
@@ -32,9 +35,11 @@
 .navbar-expand-lg{
     background-color: rgb(238, 237, 237);
 }
+
 .nav-link:hover{
     font-style: italic;
-    font-weight: bolder;
+    font-weight:bolder;
+    font-size:1.1em;
     color:black;
 }
 .navbar-text{
@@ -75,8 +80,10 @@
     margin-left:0.2em;
     padding:0;
   }
+  .fa {
+    margin-right: 25px;
+  }
   .center-info{
-     
       text-align:center;
   }
   .form-container{
@@ -84,9 +91,7 @@
       margin-top:3rem;
   }
  .sec-back{
-    margin-left:48%;
     margin-top:2%;
-    width:6%;
   }
 .link-name {
     text-decoration: none;
@@ -97,6 +102,18 @@
     text-decoration: none;
     color:rgb(163, 162, 162);
     font-weight: bolder;
-    
   }
-  
+  .divs-align{
+      margin-left:20px;
+  }
+  .card-top-margin{
+      margin-top:2em;
+  }
+  .card-message{
+      width:80%;
+  }
+  .alert{
+      height: 4vw;
+      margin:0;
+      font-size:1.2em;
+  }
