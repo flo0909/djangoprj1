@@ -7,4 +7,5 @@ urlpatterns = [
     path('ticketresult/<int:ticket_id>/', views.ticketresult, name='ticketresult'),
     path('ticketdelete/<int:ticket_id>/', views.ticketdelete, name='ticketdelete'),
     path('ticketupdate/<int:ticket_id>/', views.ticketupdate, name='ticketupdate'),
+    path('ticketanswer/<int:ticket_id>/', views.ticketanswer, name='ticketanswer'),
 ]

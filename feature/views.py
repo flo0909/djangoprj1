@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, reverse
 from .models import Ticket, TicketProgress
 from .forms import TicketForm
+from app1.models import Answer
+from app1.forms import AnswerForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -25,6 +27,7 @@ def ticketlist(request):
 
 @login_required
 def ticketdetail(request, ticket_id):
+    answer = 'There is no answer yet'
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     try:
         ticketprogress = TicketProgress.objects.get(ticket_prog=ticket_id)
@@ -32,8 +35,12 @@ def ticketdetail(request, ticket_id):
     except ObjectDoesNotExist:
         ticketprogress = 0
         ticket = get_object_or_404(Ticket, pk=ticket_id)
+    try:
+        answer = Answer.objects.get(name=ticket.name)
+    except ObjectDoesNotExist:
+        pass
 
-    return render(request, 'feature/ticketdetail.html', dict(ticket=ticket, ticketprogress=ticketprogress))
+    return render(request, 'feature/ticketdetail.html', dict(ticket=ticket, ticketprogress=ticketprogress, answer=answer))
 
 
 @login_required
@@ -41,7 +48,7 @@ def ticketdelete(request, ticket_id):
     form = Ticket.objects.filter(pk=ticket_id)
     if request.method == 'POST':
         form.delete()
-    return redirect(reverse('app1:ticketlist'))
+    return redirect(reverse('feature:ticketlist'))
 
 
 @login_required
@@ -55,12 +62,12 @@ def ticketupdate(request, ticket_id):
         ticket = Ticket.objects.get(pk=ticket_id)
         form = TicketForm(request.POST, instance = ticket)
         form.save()
-        return redirect(reverse('app1:ticketlist')) 
+        return redirect(reverse('feature:ticketlist')) 
     else:      
         u_form = {"name": ticket.name, "content":ticket.content} 
         form = TicketForm(initial=u_form)
         
-    return render(request, 'app1/update.html',{'form':form})
+    return render(request, 'feature/ticketupdate.html',{'form':form})
 
 @login_required
 def ticketresult(request, ticket_id):
@@ -73,11 +80,24 @@ def ticketresult(request, ticket_id):
 
         if request.user.username in ticket.voted:
             messages.warning(request, "You already voted for this post!")
-            return redirect(reverse('app1:ticketlist'))
+            return redirect(reverse('feature:ticketlist'))
 
         elif not request.user.username in ticket.voted:        
             mylist = ' ' + str(request.user.username) + ' ' 
             savedVoted = ticket.voted
             ticket.voted  = mylist + savedVoted
             ticket.save()
-    return redirect(reverse('app1:ticketdetail', args=(ticket.id,)))
+    return redirect(reverse('feature:ticketdetail', args=(ticket.id,)))
+
+def ticketanswer(request, ticket_id):
+    answer = []
+    form = AnswerForm(request.POST)
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    try:
+        answer = Answer.objects.get(name=ticket.name)
+    except ObjectDoesNotExist:
+        form = AnswerForm(request.POST)
+        if request.method == 'POST':
+            answer = Answer.objects.create(name=ticket.name, content=request.POST['content'])
+            return redirect(reverse('feature:ticketlist'))
+    return render(request, 'feature/ticketanswer.html', {'form':form, 'answer':answer, 'ticket':ticket})

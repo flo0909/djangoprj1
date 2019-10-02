@@ -1,95 +1,64 @@
-
 {% extends 'base.html' %}
-
-
 {% block content %}
-<br>
 
-<div class="container detail-card">
-  <div class="card card-top-margin ">
-    
-    <div class="card-header grad-01 text-center">
-        <h5 class="card-title text-center "><strong>Post Name: {{userpost.name}}</strong></h5>
-     </div>
-
-
-     <ul class="list-group list-group-flush">
-        <li class="list-group-item"><i>Post Author: </i><strong>{{userpost.author|capfirst}}</strong></li>
-        <li class="list-group-item"><i><strong>Post Description :</strong></i> {{userpost.content}}</li>
-        <li class="list-group-item"><i>Post Votes :</i> <strong>{{userpost.votes}}</strong></li>
-        <li class="list-group-item"><i>Post Date :</i> <strong>{{userpost.date_posted}}</strong></li>
-        {% if answer.content %}
-        <li class="list-group-item"><i>Post Answer :</i> <strong>{{answer.content}}</strong></li>
-        {% endif %}
-       {% if answer.answered_date %}
-        <li class="list-group-item"><i>Date Answered :</i> <strong>{{answer.answered_date}}</strong></li>
-        {% endif %}
+<div class="container ">
+   <div class="card card-top-margin ">
+      <div class="card-header grad-01 text-center">
+         <h5 class="card-title text-center "><strong>Post Name: {{userpost.name}}</strong></h5>
+      </div>
+      <ul class="list-group list-group-flush">
+         <li class="list-group-item"><i>Post Author: </i><strong>{{userpost.author|capfirst}}</strong></li>
+         <li class="list-group-item"><i><strong>Post Description :</strong></i> {{userpost.content}}</li>
+         <li class="list-group-item"><i>Post Votes :</i> <strong>{{userpost.votes}}</strong></li>
+         <li class="list-group-item"><i>Post Date :</i> <strong>{{userpost.date_posted}}</strong></li>
+         {% if answer.content %}
+         <li class="list-group-item"><i>Post Answer :</i> <strong>{{answer.content}}</strong></li>
+         {% endif %}
+         {% if answer.answered_date %}
+         <li class="list-group-item"><i>Date Answered :</i> <strong>{{answer.answered_date}}</strong></li>
+         {% endif %}
       </ul>
-
-      
-
-
-
-
-        {% if user  ==  userpost.author %}
-        <div class="row text-center">
-        <div class="card-body">
+      {% if user  ==  userpost.author %}
+      <div class="row text-center">
+         <div class="card-body">
             <form method="POST" action="{% url 'app1:deleteuserpost' userpost.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger" ><i class="fa fa-trash-o" style="font-size:20px;" ></i>Delete this Post</button>
+               {% csrf_token %}
+               <button type="submit" class="btn btn-danger" ><i class="fa fa-trash-o" style="font-size:20px;" ></i>Delete this Post</button>
             </form>
-        </div>
-       
-
-          
-          <div class="card-body">
-          <form method="POST" action="{% url 'app1:updateuserpost' userpost.id %}">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-info" ><i class="fa fa-edit " style="font-size:20px;" ></i>Update this Post </button>
-          </form>
-        </div>
+         </div>
+         <div class="card-body">
+            <form method="POST" action="{% url 'app1:updateuserpost' userpost.id %}">
+               {% csrf_token %}
+               <button type="submit" class="btn btn-info" ><i class="fa fa-edit " style="font-size:20px;" ></i>Update this Post </button>
+            </form>
+         </div>
       </div>
-          {% endif %}
-     
-
-     {% if not user  ==  userpost.author %} 
-     <div class="row text-center">
-     <div class="card-body text-center">
-     <form method="POST" action="{% url 'app1:postresult' userpost.id %}">
-       {% csrf_token %}
-       <input type="hidden" name='value' value="1">
-       <button type="submit" class="btn btn-info" ><i class="fa fa-thumbs-up"></i>Vote for this post </button>
-     </form>
-     </div>
-    </div>
-
-     {% endif %}
-
-
-
-
-     {% if not answer.content %}
-     {%if  user.is_superuser%}
-     <ul class="list-group list-group-flush text-center">
-       
-     
-       <li class="list-group-item"> <a class="btn btn-secondary " href="{% url 'app1:answer' userpost.id %}" role="button">Answer To This Post</a></li>
-    
-  
-  </ul>
-   {% endif %}
-   {% endif %}
-
-    </div> 
-  </div>
-
-  <div class="container back-button">
-      <div class="row ">
-              <div class="col text-center">
-                    <a class="btn btn-secondary " href="{% url 'app1:postslist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
-               </div>
+      {% endif %}
+      {% if not user  ==  userpost.author %} 
+      <div class="row text-center">
+         <div class="card-body text-center">
+            <form method="POST" action="{% url 'app1:postresult' userpost.id %}">
+               {% csrf_token %}
+               <input type="hidden" name='value' value="1">
+               <button type="submit" class="btn btn-info" ><i class="fa fa-thumbs-up"></i>Vote for this post </button>
+            </form>
+         </div>
       </div>
-  </div>
-
-
+      {% endif %}
+      {% if not answer.content %}
+      {%if  user.is_superuser%}
+      <ul class="list-group list-group-flush text-center">
+         <li class="list-group-item"> <a class="btn btn-secondary " href="{% url 'app1:answer' userpost.id %}" role="button">Answer To This Post</a></li>
+      </ul>
+      {% endif %}
+      {% endif %}
+   </div>
+</div>
+<div class="container back-button">
+   <div class="row ">
+      <div class="col text-center">
+         <a class="btn btn-secondary " href="{% url 'app1:postslist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
+      </div>
+   </div>
+</div>
 {% endblock %}

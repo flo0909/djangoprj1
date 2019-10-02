@@ -1,78 +1,74 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
-
 <div class="container detail-card">
-    <div class="card card-top-margin">
-        <div class="card-header grad-01">
-            <h5 class="card-title text-center "><strong>{{ticket.name}}</strong></h5>
-        </div>
-
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i><strong>Ticket Description :&nbsp</strong></i>{{ticket.content}}</li>
-            <li class="list-group-item"><i>Ticket Author:</i> <strong>{{ticket.author|capfirst}}</strong></li>
-            <li class="list-group-item"><i>Ticket Votes:</i> <strong>{{ticket.votes}}</strong></li>
-            <li class="list-group-item"><i>Date Posted:</i> <strong>{{ticket.date_posted}}</strong></li>
-            <li class="list-group-item"><i>Ticket Progress:</i> <strong>{{ticketprogress.progress}}%&nbsp</strong><progress value="{{ticketprogress.progress}}" max="100"></progress>
-            </li>
-        </ul>
-
-        {% if user == ticket.author %}
-        <div class="row text-center">
-        <div class="card-body">
-            <form method="POST" action="">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" style="font-size:20px;"></i>Delete this feature</button>
-            </form>
-        </div>
+   <div class="card card-top-margin">
+      <div class="card-header grad-01">
+         <h5 class="card-title text-center "><strong>{{ticket.name}}</strong></h5>
+      </div>
+      <ul class="list-group list-group-flush">
+         <li class="list-group-item"><i><strong>Ticket Description :&nbsp</strong></i>{{ticket.content}}</li>
+         <li class="list-group-item"><i>Ticket Author:</i> <strong>{{ticket.author|capfirst}}</strong></li>
+         <li class="list-group-item"><i>Ticket Votes:</i> <strong>{{ticket.votes}}</strong></li>
+         <li class="list-group-item"><i>Date Posted:</i> <strong>{{ticket.date_posted}}</strong></li>
+         <li class="list-group-item"><i>Ticket Progress:</i> <strong>{{ticketprogress.progress}}%&nbsp</strong><progress value="{{ticketprogress.progress}}" max="100"></progress>
+         </li>
         
-
-        <div class="card-body">
-                <form method="POST" action="">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-info" ><i class="fa fa-edit " style="font-size:20px;" ></i>Update this Post </button>
-                </form>
-              </div>
-            </div>
-
-        {% endif %}
-
-        {% if not user == ticket.author %}
-        <div class="card-body text-center">
-            <form method="POST" action="">
-                {% csrf_token %}
-                <input type="hidden" name='value' value="1">
-                <button type="submit" class="btn btn-info"><i class="fa fa-thumbs-up"></i>Vote for this ticket to get it done faster</button>
+         {% if answer.content %}
+         <li class="list-group-item"><i>Ticket Answer :</i> <strong>{{answer.content}}</strong></li>
+         {% endif %}
+         {% if answer.answered_date %}
+         <li class="list-group-item"><i>Date Answered :</i> <strong>{{answer.answered_date}}</strong></li>
+         {% endif %}
+      </ul>
+      {% if user == ticket.author %}
+      <div class="row text-center">
+         <div class="card-body">
+            <form method="POST" action="{% url 'feature:ticketdelete' ticket.id %}">
+               {% csrf_token %}
+               <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" style="font-size:20px;"></i>Delete this feature</button>
             </form>
-        </div>
-
-        {% endif %}
-
-
-        <ul class="list-group list-group-flush text-center">
-                <li class="list-group-item">
-                <div class="card-body">
-                    <a class="btn btn-success" href=""><i class="fa fa-shopping-cart " ></i>See it done ASAP! - Add to cart</a>
-                </div>
-                </li>
-           </ul>
-
-        <div class="card-body">
-            <a href="">Check the progress of your ticket</a>
-        </div>
-
-    </div>
+         </div>
+         <div class="card-body">
+            <form method="POST" action="{% url 'feature:ticketupdate' ticket.id %}">
+               {% csrf_token %}
+               <button type="submit" class="btn btn-info" ><i class="fa fa-edit " style="font-size:20px;" ></i>Update this Post </button>
+            </form>
+         </div>
+      </div>
+      {% endif %}
+      {% if not user == ticket.author %}
+      <div class="card-body text-center">
+         <form method="POST" action="">
+            {% csrf_token %}
+            <input type="hidden" name='value' value="1">
+            <button type="submit" class="btn btn-info"><i class="fa fa-thumbs-up"></i>Vote for this ticket to get it done faster</button>
+         </form>
+      </div>
+      {% endif %}
+      {% if not answer.content %}
+      {%if  user.is_superuser%}
+      <ul class="list-group list-group-flush text-center">
+         <li class="list-group-item"> <a class="btn btn-secondary " href="{% url 'feature:ticketanswer' ticket.id %}" role="button">Answer To This Post</a></li>
+      </ul>
+      {% endif %}
+      {% endif %}
+      <ul class="list-group list-group-flush text-center">
+         <li class="list-group-item">
+            <div class="card-body">
+               <a class="btn btn-success" href=""><i class="fa fa-shopping-cart " ></i>See it done ASAP! - Add to cart</a>
+            </div>
+         </li>
+      </ul>
+      <div class="card-body">
+         <a href="">Check the progress of your ticket</a>
+      </div>
+   </div>
 </div>
 <div class="container back-button">
-    <div class="row ">
-            <div class="col text-center">
-        <a class="btn btn-secondary" href="{% url 'feature:ticketlist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
-    </div>
-    </div>
+   <div class="row ">
+      <div class="col text-center">
+         <a class="btn btn-secondary" href="{% url 'feature:ticketlist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
+      </div>
+   </div>
 </div>
-
-
-<br> 
-<br> 
 {% endblock %}

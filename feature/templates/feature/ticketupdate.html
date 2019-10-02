@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container form-container">
+   <div class="card card-top-margin">
+      <div class="card-header grad-01 text-center">
+         <h4>Update Your Post</h4>
+      </div>
+      <div class="card-body text-center">
+         <form method="POST">
+            {% csrf_token %}
+            {{form | crispy}}
+            <button type="submit" class="btn btn-secondary ">Submit</button>
+         </form>
+      </div>
+   </div>
+</div>
+<div class="container back-button">
+   <div class="row ">
+      <div class="col text-center">
+         <a class="btn btn-secondary " href="{% url 'feature:ticketlist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
+      </div>
+   </div>
+</div>
+{% endblock %}
