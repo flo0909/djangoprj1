@@ -6,9 +6,9 @@
 <br>
 
 <div class="container detail-card">
-      <div class="card" >
+  <div class="card card-top-margin ">
     
-     <div class="card-header">
+    <div class="card-header grad-01 text-center">
         <h5 class="card-title text-center "><strong>Post Name: {{userpost.name}}</strong></h5>
      </div>
 
@@ -83,13 +83,13 @@
     </div> 
   </div>
 
-  <div class="row ">
-  <a class="btn btn-secondary sec-back mx-auto" href="{% url 'app1:postslist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <div class="container back-button">
+      <div class="row ">
+              <div class="col text-center">
+                    <a class="btn btn-secondary " href="{% url 'app1:postslist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
+               </div>
+      </div>
+  </div>
+
 
 {% endblock %}

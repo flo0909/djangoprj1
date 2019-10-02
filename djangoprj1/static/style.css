@@ -1,9 +1,12 @@
+.jumbotron{
+    margin-top:2%;
+}
+
+
 .one{
     background-color:rgb(204, 188, 163);
     height:30rem;
-    margin:1rem;
-    
-    
+    margin:4%;
 }
 .one:hover{
     background-color: rgb(228, 211, 177)
@@ -11,7 +14,7 @@
 .two{
     background-color:rgb(135, 177, 148);
     height:30rem;
-    margin:1rem;
+    margin:4%;
     
 }
 .two:hover{
@@ -28,20 +31,19 @@
     color: rgb(0, 0, 0);
     overflow:hidden;
     text-align:center;
+    z-index:2;
  }
+
  .help-block{
      display:none;
  }
-.navbar-expand-lg{
-    background-color: rgb(238, 237, 237);
-}
 
 .nav-link:hover{
     font-style: italic;
-    font-weight:bolder;
-    font-size:1.1em;
+    font-weight:bolder; 
     color:black;
 }
+
 .navbar-text{
     font-weight: bold;
     color:black;
@@ -89,31 +91,51 @@
   .form-container{
       width:100%;
       margin-top:3rem;
+      margin-bottom:3rem;
   }
- .sec-back{
-    margin-top:2%;
-  }
+
 .link-name {
     text-decoration: none;
     color:rgb(0, 0, 0);
-    font-size:1.2em;
+    font-size:2em;
   }
   .link-name:hover {
     text-decoration: none;
     color:rgb(163, 162, 162);
     font-weight: bolder;
   }
-  .divs-align{
-      margin-left:20px;
-  }
+ 
   .card-top-margin{
-      margin-top:2em;
-  }
-  .card-message{
+    margin-top:2em;
+ }
+ .grad-01{
+    background-image: linear-gradient(0deg,rgb(243, 243, 243) 0%, rgb(250, 250, 250) 4%, rgb(247, 247, 247) 10%, rgb(247, 247, 247)  75%, rgb(247, 247, 247)  90%,white 97%, rgb(226, 226, 226) 100%);
+}
+.grad-02{
+    background-image: linear-gradient(0deg,rgb(218, 218, 218) 0%, white 4%, rgb(245, 245, 245) 15%, rgb(245, 245, 245)  75%, rgb(245, 245, 245)   90%,rgb(245, 245, 245)  97%, rgb(226, 226, 226) 100%);
+}
+.grad-03{
+    background-image: linear-gradient(0deg,rgb(218, 218, 218) 0%, white 4%, rgb(230, 230, 230) 15%, rgb(230, 230, 230)  70%, rgb(230, 230, 230)   80%,rgb(255, 255, 255)  90%, rgb(219, 218, 218) 100%);
+}
+.grad-button{
+    font-size:1em;
+    font-weight:bolder;
+    background-image: linear-gradient(0deg,rgb(158, 158, 158) 0%, rgb(247, 247, 247) 4%, rgb(194, 194, 194) 15%, rgb(194, 194, 194)  70%, rgb(194, 194, 194)   85%,white  96%, rgb(192, 192, 192) 100%);
+}
+
+.card-message{
       width:80%;
   }
   .alert{
-      height: 4vw;
+      height: 6%;
       margin:0;
       font-size:1.2em;
   }
+.back-button{
+    margin-top:2em;
+    margin-bottom:2em;
+}
+.message-container{
+    height:8%;
+    margin-top:2em;
+}

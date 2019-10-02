@@ -5,31 +5,32 @@
 {% for ticket in ticket %}
 <div class="container">
 <div class="card card-top-margin">
-        <div class="card-header  text-center " id="grad">
-          <h4><a class="link-name" href="{% url 'feature:ticketdetail' ticket.id %}">{{ticket.name}}</a></h4>
+        <div class="card-header  grad-01 text-center ">
+          <a class="link-name" href="{% url 'feature:ticketdetail' ticket.id %}"><i>{{ticket.name}}</i></a>
         </div>
 </div>
+
 <ul class="list-group ">
         <li class="list-group-item">Ticket Author: <strong>Ticket Author:{{ticket.author|capfirst}}</strong></li>
         <li class="list-group-item">Ticket Votes : <strong>Ticket Votes{{ticket.votes}}</strong></li>
       </ul>
     </div>
-      <br>
+     
 
 {% endfor %}
 <br>
 
 <div class="container center-pagination">
 <nav aria-label="custom-navigation">
-    <ul class="pagination">
+    <ul class="pagination ">
      {% if ticket.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page={{ ticket.previous_page_number }}">Previous</a></li>
+      <li class="page-item"><a class="page-link text-dark bg-light " href="?page={{ ticket.previous_page_number }}">Previous</a></li>
       {% endif %}
-      <li class="page-item active">
-          <a class="page-link" href="#">Page {{ ticket.number }}</a>
+      <li class="page-item active  ">
+          <a class="page-link bg-secondary" href="#">Page {{ ticket.number }}</a>
         </li>
       {% if ticket.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ ticket.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link text-dark bg-light" href="?page={{ ticket.next_page_number }}">Next</a></li>
       {% endif %}
     </ul>
   </nav>
@@ -37,7 +38,7 @@
 
   <div class="container form-container">
 <div class="card">
-        <div class="card-header text-center">
+        <div class="card-header grad-01 text-center">
           <h4>Add a request for a feature</h4>
         </div>
         <div class="card-body text-center">
@@ -45,7 +46,7 @@
           <form method="POST">
                 {% csrf_token %}
                 {{form | crispy }}
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-secondary">Submit</button>
             </form>
          
         </div>
