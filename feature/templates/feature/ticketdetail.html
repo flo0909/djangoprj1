@@ -55,7 +55,8 @@
       <ul class="list-group list-group-flush text-center">
          <li class="list-group-item">
             <div class="card-body">
-               <a class="btn btn-success" href=""><i class="fa fa-shopping-cart " ></i>See it done ASAP! - Add to cart</a>
+               <a class="btn btn-success" href="{% url 'cart:add' ticket.id %}"><i class="fa fa-shopping-cart " ></i>See it done ASAP! - Add to cart</a>
+               
             </div>
          </li>
       </ul>

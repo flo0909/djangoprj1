@@ -6,6 +6,11 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserLoginForm, UserRegisterForm
 from django.core.exceptions import ObjectDoesNotExist
 
+# code for login and register views taken with many thanks from Mr Brad Traversy's tutorial 
+# https://www.udemy.com/course/python-django-dev-to-deployment/
+
+
+
 
 def login(request):
     if request.method == 'POST':

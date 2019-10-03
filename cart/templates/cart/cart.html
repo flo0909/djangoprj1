@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+<div class="row card-top-margin card-bottom-margin">
+    <div class="col-sm-6">
+      <div class="card">
+            <div class="card card-header text-center grad-01">
+                    <h4>Your Shopping Cart</h4>
+            </div>
+            <ul class="list-group list-group-flush ">
+                    {% if cart_items %}
+                    {% for cart_item in cart_items %}
+                    <li class="list-group-item ">
+                        <li class="list-unstyled ml-3">Item Name:&nbsp;<strong>{{cart_item.ticket.name}}</strong> </li>
+                        <li class="list-unstyled ml-3">Item Price:&nbsp;<strong>£{{cart_item.ticket.price}}</strong></li>
+                        <li class="list-unstyled ml-3">Quantity:&nbsp;<strong>{{cart_item.quantity}}</strong></li>
+                        <li class="list-unstyled ml-3">Change Quantity
+                                <span class="ml-3"><a  href="{% url 'cart:remove' cart_item.ticket.id %}"><i class="fa fa-minus-circle" style="color: rgb(128, 128, 128)"></i></a><a  href="{% url 'cart:add' cart_item.ticket.id %}"><i class="fa fa-plus-circle" style="color: rgb(128, 128, 128)"></i></a></span>
+                        </li>
+                    </li>
+                    {% endfor %}
+                    <ul class="list-group list-group-flush ">
+                        <li class="list-group-item ">
+                                <li class="list-unstyled ml-3">
+                                    <div class="card-body">
+                                        <a href="{% url 'cart:emptyCart' %}" class="btn btn-primary"><i class="fa fa-trash-o" style="font-size:20px;" ></i>Empty Cart</a>
+                                     </div>        
+                                </li>
+                        </li>
+                    </ul>
+                    {% else %}
+                    <ul class="list-group list-align">
+                            <li class="list-group-item text-center">
+                               <h3>You don't have any items in your cart!</h3>
+                            </li>
+                         </ul>
+                    {% endif %}
+                  </ul>
+        <div class="card-body">
+            {% if cart_items %}
+          <h5 class="card-title">Review You Cart And Go To Checkout</h5>
+          {% else %}
+          <h5 class="card-title">Find a Feature on Feature Page</h5>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+            <div class="card card-header text-center grad-01">
+                    <h4>Checkout</h4>
+            </div>
+            <ul class="list-group list-group-flush text-center">
+                    {% if cart_items %}
+                    <li class="list-group-item"><strong><h5>Please Review Your Cart Before Purchasing!</h5></strong></li>
+                    <li class="list-group-item"><h5>Total Amount To Pay</h5></li>
+                    <ul class="list-group text-center">
+                            <li class="list-group-item">
+                               <h5>Total:£{{total}}</h5>
+                            </li>
+                         </ul>
+                         <ul class="list-group text-center">
+                            <li class="list-group-item">
+                               <form  action="" class="str-form" method="POST">
+                                  {% csrf_token %}
+                                  <script
+                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-secondary"
+                                     data-key="{{ data_key }}"
+                                     data-amount="{{ stripe_total }}"
+                                     data-name="Issue Tracker"
+                                     data-description="{{ description }}"
+                                     data-locale="auto"
+                                     data-currency="gbp"
+                                     data-shipping-address="true"
+                                     data-billing-address="true"
+                                     data-zip-code="true"></script>
+                               </form>
+                            </li>
+                         </ul>
+                    {% endif %}
+                  </ul>
+         <div class="card-body text-center">
+            <h5 class="card-title ">See Our Other Offers</h5>
+                <a href="{% url 'feature:ticketlist' %}" class="btn btn-secondary ">Continue Shopping</a>
+          <p class="card-text">Please continue your visit and find your desired feature.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,6 +38,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1','djangoprj1.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'cart.apps.CartConfig',
     'feature.apps.FeatureConfig',
     'accounts.apps.AccountsConfig',
     'app1.apps.App1Config',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -135,6 +138,14 @@ STATICFILES_DIRS = [
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
+STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY']
+STRIPE_PUBLISHABLE_KEY = os.environ['STRIPE_PUBLISHABLE_KEY']
+
+
+
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
