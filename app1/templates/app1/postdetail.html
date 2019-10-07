@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <div class="container ">
    <div class="card card-top-margin ">
       <div class="card-header grad-01 text-center">
@@ -11,6 +12,10 @@
          <li class="list-group-item"><i><strong>Post Description :</strong></i> {{userpost.content}}</li>
          <li class="list-group-item"><i>Post Votes :</i> <strong>{{userpost.votes}}</strong></li>
          <li class="list-group-item"><i>Post Date :</i> <strong>{{userpost.date_posted}}</strong></li>
+         {% if userpost.done %}
+         <li class="list-group-item"><i>Please find the solved post notes <a href="">here</a></i></li>
+      
+         {% endif %}
          {% if answer.content %}
          <li class="list-group-item"><i>Post Answer :</i> <strong>{{answer.content}}</strong></li>
          {% endif %}
@@ -55,10 +60,11 @@
    </div>
 </div>
 <div class="container back-button">
-   <div class="row ">
+   <div class="row" >
       <div class="col text-center">
-         <a class="btn btn-secondary " href="{% url 'app1:postslist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
+         <a class="btn btn-secondary"  href="{% url 'app1:postslist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
       </div>
    </div>
 </div>
+
 {% endblock %}

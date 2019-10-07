@@ -18,11 +18,12 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
+    
     <title>Document</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light grad-02">
+    <nav class="navbar navbar-expand-lg navbar-light grad-02"  >
         <a class="navbar-brand" href="{% url 'app1:index' %}">Issue Tracker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,10 +63,10 @@
             </ul>
             <div class="navbar-nav">
                 {% if user.is_authenticated %}
-                <span class="navbar-text mr-5 ">
+                <span class="navbar-text mr-5 " >
                     Logged in as {{user.username | capfirst}}
                 </span>
-                <a class="nav-item nav-link mr-3" href="{% url 'accounts:logout' %}">Logout</a>
+                <a class="nav-item nav-link mr-3"  href="{% url 'accounts:logout' %}">Logout</a>
                 <a class="nav-item nav-link mr-3" href="{% url 'cart:cart_detail' %}"><i
                         class="fa fa-shopping-cart"></i></a>
                 {% else %}
@@ -90,9 +91,9 @@
     </nav>
 
     {% block content %}{% endblock %}
-
+    <script src="/static/main.js"></script>
     <footer class="footer grad-03">
-        <span>&copy Lorem Ipsum 2019</span>
+        <span >&copy Lorem Ipsum 2019</span>
     </footer>
 </body>
 

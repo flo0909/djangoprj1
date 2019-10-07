@@ -19,9 +19,12 @@
          <a class="link-name" href="{% url 'app1:postdetail' userpost.id %}"><i>{{userpost.name}}</i></a>
       </div>
    </div>
-   <ul class="list-group ">
+   <ul class="list-group">
       <li class="list-group-item">Post Author: <strong>{{userpost.author|capfirst}}</strong></li>
       <li class="list-group-item">Post Votes :<strong> {{userpost.votes}}</strong></li>
+      {% if userpost.done %}
+      <li class="list-group-item" style="background-color:rgb(255, 205, 193);"><strong>This post has now been completed!</strong></li>
+      {% endif %}
    </ul>
 </div>
 {% endfor %}
@@ -43,12 +46,15 @@
       </ul>
    </nav>
 </div>
-<div class="container form-container">
+<div class="container form-container " >
    <div class="card">
-      <div class="card-header grad-01 text-center">
-         <h4>Post a problem that you discovered</h4>
-      </div>
-      <div class="card-body text-center">
+      
+      <div class="card-header text-center" id="formshow" >
+         
+         
+         <h4 class="text-hover"><i>Post a problem that you discovered</i></h4></div>
+     
+      <div class="card-body text-center hide" id="hiddenform">
          <form method="POST">
             {% csrf_token %}
             {{form | crispy }}

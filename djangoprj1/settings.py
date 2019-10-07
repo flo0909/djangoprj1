@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1','djangoprj1.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'progress.apps.ProgressConfig',
     'cart.apps.CartConfig',
     'feature.apps.FeatureConfig',
     'accounts.apps.AccountsConfig',
@@ -149,3 +150,4 @@ prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+

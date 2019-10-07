@@ -8,6 +8,7 @@ class UserPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
+    done = models.BooleanField(default=False)
     votes = models.IntegerField(default=0)
     voted = models.TextField()
     def __str__(self):

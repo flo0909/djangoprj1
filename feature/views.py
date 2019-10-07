@@ -29,8 +29,14 @@ def ticketlist(request):
 def ticketdetail(request, ticket_id):
     answer = 'There is no answer yet'
     ticket = get_object_or_404(Ticket, pk=ticket_id)
+
     try:
         ticketprogress = TicketProgress.objects.get(ticket_prog=ticket_id)
+        if ticketprogress.progress == 100:
+            ticket.done = True
+            ticket.save()
+        else:
+            ticket.done = False
 
     except ObjectDoesNotExist:
         ticketprogress = 0

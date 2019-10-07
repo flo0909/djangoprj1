@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row card-top-margin card-bottom-margin">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card card-header text-center grad-01">
+                        <h5>Progress per Ticket</h5>
+                        Checking for "{{ticketprog.ticket_prog.name}}"
+                    </div>
+                    <ul class="list-group list-group-flush mx-auto">
+                        <li class="list-group-item ">
+                            <div class="bar-chart" id="ticket"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card card-header text-center grad-01">
+                        <h5>Progress per Ticket</h5>
+                        Checking for "{{ticketprog.ticket_prog.name}}"
+                    </div>
+                    <ul class="list-group list-group-flush mx-auto">
+                        <li class="list-group-item ">
+                            <div class="pie-chart " id="per-ticket-chart"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row card-top-margin card-bottom-margin">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card card-header text-center grad-01">
+                        <h5>Votes per Ticket</h5>
+                        Checking for "{{ticketprog.ticket_prog.name}}, Progress:{{ticketprog.progress}}%"
+                    </div>
+                    <ul class="list-group list-group-flush mx-auto">
+                        <li class="list-group-item ">
+                            <div class="bar-chart-votes" id="bar-ticket_votes"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card card-header text-center grad-01">
+                        <h5>Votes per Ticket</h5>
+                        Checking for "{{ticketprog.ticket_prog.name}}, Progress:{{ticketprog.progress}}%"
+                    </div>
+                    <ul class="list-group list-group-flush mx-auto">
+                        <li class="list-group-item ">
+                            <div class="pie-chart-votes" id="pie-ticket_votes"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="container">
+        <div class="row card-top-margin card-bottom-margin">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card card-header text-center grad-01">
+                        <h5>Tickets Done & Features Added</h5>
+                    </div>
+                    <ul class="list-group list-group-flush mx-auto">
+                        {% for ticket_done in ticket_done %}
+                        <li class="list-group-item ">Tickets
+                            Done:&nbsp;<strong>"{{ticket_done.name}}"</strong>&nbsp;requested
+                            by&nbsp;<strong>{{ticket_done.author | capfirst}}</strong></li>
+                        {% endfor %}
+                        <li class="list-group-item ">Tickets Done Count :{{ticket_done_count}}</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <script>
+
+                var progressData = [
+                    { "name": "{{ticketprog.ticket_prog.name}}", "progress": "{{ticketprog.progress}}", "votes": "{{ticketprog.ticket_prog.votes}}" },
+                    { "name": "{{ticketSample1.ticket_prog.name}}", "progress": "{{ticketSample1.progress}}", "votes": "{{ticketSample1.ticket_prog.votes}}" },
+                    { "name": "{{ticketSample2.ticket_prog.name}}", "progress": "{{ticketSample2.progress}}", "votes": "{{ticketSample2.ticket_prog.votes}}" },
+
+                ];
+                var ndx = crossfilter(progressData);
+                var name_dim = ndx.dimension(dc.pluck('name'));
+                var total_progress_per_ticket = name_dim.group().reduceSum(dc.pluck('progress'));
+                dc.barChart('#ticket')
+                    .width(360)
+                    .height(300)
+                    .margins({ top: 25, right: 50, bottom: 30, left: 50 })
+                    .dimension(name_dim)
+                    .group(total_progress_per_ticket)
+                    .transitionDuration(1500)
+                    .x(d3.scale.ordinal())
+                    .xUnits(dc.units.ordinal)
+                    .xAxisLabel("Ticket")
+                    .yAxisLabel("Progress")
+                    .yAxis().ticks(4);
+
+                dc.renderAll();
+
+
+                var ndx = crossfilter(progressData);
+                var name_dim = ndx.dimension(dc.pluck('name'));
+                var total_progress_per_ticket = name_dim.group().reduceSum(dc.pluck('progress'));
+                dc.pieChart('#per-ticket-chart')
+                    .height(300)
+                    .radius(200)
+                    .transitionDuration(1500)
+                    .dimension(name_dim)
+                    .group(total_progress_per_ticket);
+
+                dc.renderAll();
+
+
+
+
+                var ndx = crossfilter(progressData);
+                var name_dim = ndx.dimension(dc.pluck('name'));
+                var total_votes_per_ticket = name_dim.group().reduceSum(dc.pluck('votes'));
+                dc.barChart('#bar-ticket_votes')
+                    .width(360)
+                    .height(300)
+                    .margins({ top: 25, right: 50, bottom: 30, left: 50 })
+                    .dimension(name_dim)
+                    .group(total_votes_per_ticket)
+                    .transitionDuration(1500)
+                    .x(d3.scale.ordinal())
+                    .xUnits(dc.units.ordinal)
+                    .elasticY(true)
+                    .xAxisLabel("Ticket")
+                    .yAxisLabel("Votes")
+                    .yAxis().ticks(4);
+
+                dc.renderAll();
+                var ndx = crossfilter(progressData);
+                var name_dim = ndx.dimension(dc.pluck('name'));
+                var total_progress_per_ticket = name_dim.group().reduceSum(dc.pluck('progress'));
+                dc.pieChart('#pie-ticket_votes')
+                    .height(300)
+                    .radius(200)
+                    .transitionDuration(1500)
+                    .dimension(name_dim)
+                    .group(total_progress_per_ticket);
+
+                dc.renderAll();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </script>
+            <div class="container back-button">
+                <div class="row ">
+                    <div class="col text-center">
+                        <a class="btn btn-secondary" href="{% url 'feature:ticketlist' %}" role="button"><i
+                                class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+</body>
+
+{% endblock %}
