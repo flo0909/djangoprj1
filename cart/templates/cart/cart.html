@@ -16,7 +16,7 @@
                         <li class="list-unstyled ml-3">Item Price:&nbsp;<strong>£{{cart_item.ticket.price}}</strong></li>
                         <li class="list-unstyled ml-3">Quantity:&nbsp;<strong>{{cart_item.quantity}}</strong></li>
                         <li class="list-unstyled ml-3">Change Quantity
-                                <span class="ml-3"><a  href="{% url 'cart:remove' cart_item.ticket.id %}"><i class="fa fa-minus-circle" style="color: rgb(128, 128, 128)"></i></a><a  href="{% url 'cart:add' cart_item.ticket.id %}"><i class="fa fa-plus-circle" style="color: rgb(128, 128, 128)"></i></a></span>
+                                <span class="ml-3"><a  href="{% url 'cart:remove' cart_item.ticket.id %}"><i class="fa fa-minus-circle fontaws" style="color: rgb(128, 128, 128)"></i></a><a  href="{% url 'cart:add' cart_item.ticket.id %}"><i class="fa fa-plus-circle fontaws" style="color: rgb(128, 128, 128)"></i></a></span>
                         </li>
                     </li>
                     {% endfor %}
@@ -24,7 +24,7 @@
                         <li class="list-group-item ">
                                 <li class="list-unstyled ml-3">
                                     <div class="card-body">
-                                        <a href="{% url 'cart:emptyCart' %}" class="btn btn-primary"><i class="fa fa-trash-o" style="font-size:20px;" ></i>Empty Cart</a>
+                                        <a href="{% url 'cart:emptyCart' %}" class="btn btn-primary"><i class="fa fa-trash-o fontaws" style="font-size:20px;" ></i>Empty Cart</a>
                                      </div>        
                                 </li>
                         </li>

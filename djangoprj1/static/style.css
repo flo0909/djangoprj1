@@ -1,9 +1,10 @@
 body{
     background-image: url('/static/images/back.jpg');
-    background-size:110%;
+    background-size:cover;
     background-repeat: repeat-x;
     background-position: right top;
     background-attachment: fixed;
+    
     
 }
 .brand-text{
@@ -21,35 +22,76 @@ body{
     padding:0;
 }
 .top-landing-div{
-    background-color:rgb(241, 76, 0) !important;
+    background-color:rgb(247, 131, 77) !important;
     height:12rem;
     margin:0;
+    padding:0;
+    text-align: center;
+}
+.landing-text{
+    color:white;
+    font-size:1.6em;
+    margin-top:1em;
+    margin-left:0.5em;
+    margin-right:0.5em;
+    padding:0;
+    
+    
 }
 .center-info{
     color:white;
-    font-size:1.2em;
+    font-size:2.3em;
+    text-align:center;
 }
+
 .one{
-    background-color:rgb(202, 155, 78);
-    
+    background-color:rgb(202, 155, 78, 0.1);
+    filter: alpha(opacity=1);
     height:30rem;
     margin:4%;
+    z-index: 2;
+}
+.backgr01{
+    background: url('/static/images/card-back.jpg');
+    background-color:rgb(202, 155, 78, 0.1);
+    filter: alpha(opacity=0);
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin:2em;
+    z-index: -4;
 }
 .one:hover{
-    background-color: rgb(219, 168, 86);
+    background-color:rgba(189, 158, 110, 0.4);
+    filter: alpha(opacity=0);
+    cursor:pointer;
 }
 .two{
-    background-color:rgb(96, 177, 121);
+    background-color:rgb(96, 177, 121, 0.1);
+    filter: alpha(opacity=1);
     height:30rem;
     margin:4%;
-    
+    z-index: 2;
 }
 .two:hover{
-    background-color:rgb(103, 189, 130);
+    background-color:rgba(100, 131, 94, 0.4);
+    filter: alpha(opacity=0);
+    cursor:pointer;
 }
-.landing-cards{
-    margin-top:8rem;
+.card-header:hover{
+    background-image: linear-gradient(0deg,rgb(243, 243, 243) 0%, rgb(250, 250, 250) 4%, rgb(240, 238, 238) 10%, rgb(240, 238, 238)  75%, rgb(240, 238, 238)  90%,white 97%, rgb(226, 226, 226) 100%);
 }
+.icon{
+    position:relative;
+    height:30px;
+    width:30px;
+    border-radius:15px;
+    background-color: rgb(192, 191, 191)
+}
+.user-icon{
+    margin:6px;
+}
+
 .footer {
     position:fixed;
     bottom:0;
@@ -109,12 +151,10 @@ body{
     margin-left:0.2em;
     padding:0;
   }
-  .fa {
+  .fontaws {
     margin-right: 25px;
   }
-  .center-info{
-      text-align:center;
-  }
+ 
   .form-container{
       
       width:100%;
@@ -162,7 +202,7 @@ body{
 .card-message{
       width:80%;
   }
-  .alert{
+.alert{
       height: 6%;
       margin:0;
       font-size:1.2em;
@@ -187,32 +227,46 @@ body{
     cursor: pointer;
 }
 #formshow:hover{
-    background-image: linear-gradient(0deg,rgb(158, 158, 158) 0%, rgb(247, 247, 247) 4%, rgb(194, 194, 194) 15%, rgb(194, 194, 194)  70%, rgb(194, 194, 194)   85%,white  96%, rgb(192, 192, 192) 100%);
+    background-image: linear-gradient(0deg,rgb(173, 171, 171) 0%, rgb(247, 247, 247) 4%, rgb(214, 214, 214) 15%, rgb(214, 214, 214)  70%, rgb(212, 212, 212)   85%,white  96%, rgb(192, 192, 192) 100%);
     
 }
 .card-text{
-    margin-top:60px;
+    margin-top:1.2em;
+    color:white;
+    font-size:1.3em;
 }
 .list-group-item{
     border:1px solid  rgb(182, 182, 182);
 }
-@media only screen and (max-width: 300px){
-    .top-landing-div{
-        font-size: 0.55em;
-        line-height:1.1em;
+@media only screen and (max-width: 360px){
+    .landing-text{
+        font-size:1em;
+        line-height: 1.3em;
+    }
+    .card-text{
+        font-size:1em;
     }
     .center-info{
-        margin:0;
-        padding:0;
+        font-size:1.3em;
     }
-    .brand-text{
-        font-size: 0.9em;
+
+}
+@media only screen and (min-width:361px) and (max-width:767px){
+    .landing-text{
+        font-size:1em;
+    }
+    .center-info{
+        line-height: 1.2em;
     }
 }
-@media only screen and (min-width:301px) and (max-width:900px){
-    .top-landing-div{
-        font-size: 0.75em;
-        line-height:1.5em;
-        margin:0;
+@media only screen and (min-width:768px) and (max-width:1024px){
+    .landing-text{
+        font-size:1.4em;
+    }
+    .center-info{
+        line-height: 1.4em;
+    }
+    .cards-row{
+        margin-left:2em;
     }
 }

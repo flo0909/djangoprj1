@@ -8,7 +8,11 @@
          <h5 class="card-title text-center "><strong>Post Name: {{userpost.name}}</strong></h5>
       </div>
       <ul class="list-group list-group-flush">
-         <li class="list-group-item"><i>Post Author: </i><strong>{{userpost.author|capfirst}}</strong></li>
+         <li class="list-group-item"><i>Post Author: </i><strong>{{userpost.author|capfirst}}</strong>
+            <div class="icon" style="height:80px;width:80px;border-radius:50px;">
+               <i class="fa fa-user user-icon" style="font-size:70px;margin-left:15px;" ></i>
+           </div>
+         </li>
          <li class="list-group-item"><i><strong>Post Description :</strong></i> {{userpost.content}}</li>
          <li class="list-group-item"><i>Post Votes :</i> <strong>{{userpost.votes}}</strong></li>
          <li class="list-group-item"><i>Post Date :</i> <strong>{{userpost.date_posted}}</strong></li>
@@ -28,13 +32,13 @@
          <div class="card-body">
             <form method="POST" action="{% url 'app1:deleteuserpost' userpost.id %}">
                {% csrf_token %}
-               <button type="submit" class="btn btn-danger" ><i class="fa fa-trash-o" style="font-size:20px;" ></i>Delete this Post</button>
+               <button type="submit" class="btn btn-danger" ><i class="fa fa-trash-o fontaws" style="font-size:20px;" ></i>Delete this Post</button>
             </form>
          </div>
          <div class="card-body">
             <form method="POST" action="{% url 'app1:updateuserpost' userpost.id %}">
                {% csrf_token %}
-               <button type="submit" class="btn btn-info" ><i class="fa fa-edit " style="font-size:20px;" ></i>Update this Post </button>
+               <button type="submit" class="btn btn-info" ><i class="fa fa-edit fontaws" style="font-size:20px;" ></i>Update this Post </button>
             </form>
          </div>
       </div>
@@ -45,7 +49,7 @@
             <form method="POST" action="{% url 'app1:postresult' userpost.id %}">
                {% csrf_token %}
                <input type="hidden" name='value' value="1">
-               <button type="submit" class="btn btn-info" ><i class="fa fa-thumbs-up"></i>Vote for this post </button>
+               <button type="submit" class="btn btn-info" ><i class="fa fa-thumbs-up fontaws"></i>Vote for this post </button>
             </form>
          </div>
       </div>
@@ -62,7 +66,7 @@
 <div class="container back-button">
    <div class="row" >
       <div class="col text-center">
-         <a class="btn btn-secondary"  href="{% url 'app1:postslist' %}" role="button"><i class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
+         <a class="btn btn-secondary"  href="{% url 'app1:postslist' %}" role="button"><i class="fa fa-angle-left fontaws" style="font-size:20px"></i>Back</a>
       </div>
    </div>
 </div>

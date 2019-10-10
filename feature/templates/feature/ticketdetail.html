@@ -7,7 +7,12 @@
       </div>
       <ul class="list-group list-group-flush">
          <li class="list-group-item"><i><strong>Ticket Description :&nbsp;</strong></i>{{ticket.content}}</li>
-         <li class="list-group-item"><i>Ticket Author:</i> <strong>{{ticket.author|capfirst}}</strong></li>
+         <li class="list-group-item"><i>Ticket Author:</i> <strong>{{ticket.author|capfirst}}</strong>
+         
+            <div class="icon" style="height:80px;width:80px;border-radius:50px;">
+               <i class="fa fa-user user-icon" style="font-size:70px;margin-left:15px;" ></i>
+           </div>
+         </li>
          <li class="list-group-item"><i>Ticket Votes:</i> <strong>{{ticket.votes}}</strong></li>
          <li class="list-group-item"><i>Date Posted:</i> <strong>{{ticket.date_posted}}</strong></li>
 
@@ -39,7 +44,7 @@
          <div class="card-body">
             <form method="POST" action="{% url 'feature:ticketupdate' ticket.id %}">
                {% csrf_token %}
-               <button type="submit" class="btn btn-info"><i class="fa fa-edit " style="font-size:20px;"></i>Update
+               <button type="submit" class="btn btn-info"><i class="fa fa-edit fontaws" style="font-size:20px;"></i>Update
                </button>
             </form>
          </div>
@@ -50,7 +55,7 @@
          <form method="POST" action="{%url 'feature:ticketresult' ticket.id%}">
             {% csrf_token %}
             <input type="hidden" name='value' value="1">
-            <button type="submit" class="btn btn-info"><i class="fa fa-thumbs-up"></i>Vote for this ticket to get it
+            <button type="submit" class="btn btn-info"><i class="fa fa-thumbs-up fontaws"></i>Vote for this ticket to get it
                done faster</button>
          </form>
       </div>
@@ -66,7 +71,7 @@
       <ul class="list-group list-group-flush text-center">
          <li class="list-group-item">
             <div class="card-body">
-               <a class="btn btn-success" href="{% url 'cart:add' ticket.id %}"><i class="fa fa-shopping-cart "></i>See
+               <a class="btn btn-success" href="{% url 'cart:add' ticket.id %}"><i class="fa fa-shopping-cart fontaws "></i>See
                   it done ASAP! - Add to cart</a>
             </div>
          </li>
@@ -81,7 +86,7 @@
 <div class="container back-button">
    <div class="row ">
       <div class="col text-center">
-         <a class="btn btn-secondary" href="{% url 'feature:ticketlist' %}" role="button"><i class="fa fa-angle-left"
+         <a class="btn btn-secondary" href="{% url 'feature:ticketlist' %}" role="button"><i class="fa fa-angle-left fontaws"
                style="font-size:20px"></i>Back</a>
       </div>
    </div>
