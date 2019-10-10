@@ -23,7 +23,7 @@ body{
 .top-landing-div{
     background-color:rgb(241, 76, 0) !important;
     height:12rem;
-    margin-top:2%;
+    margin:0;
 }
 .center-info{
     color:white;
@@ -195,4 +195,24 @@ body{
 }
 .list-group-item{
     border:1px solid  rgb(182, 182, 182);
+}
+@media only screen and (max-width: 300px){
+    .top-landing-div{
+        font-size: 0.55em;
+        line-height:1.1em;
+    }
+    .center-info{
+        margin:0;
+        padding:0;
+    }
+    .brand-text{
+        font-size: 0.9em;
+    }
+}
+@media only screen and (min-width:301px) and (max-width:900px){
+    .top-landing-div{
+        font-size: 0.75em;
+        line-height:1.5em;
+        margin:0;
+    }
 }
