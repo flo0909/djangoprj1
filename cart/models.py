@@ -17,3 +17,7 @@ class CartItem(models.Model):
         return ticket.price * self.quantity
     def __str__(self):
         return str(self.ticket)
+
+
+
+    

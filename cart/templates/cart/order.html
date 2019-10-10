@@ -1,1 +1,16 @@
-<h1>Order</h1>
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="container form-container col-md-6 col-lg-5">
+    <div class="card ">
+       <div class="card-header text-center">
+          <h4>Thank you for your order!</h4>
+       </div>
+       <div class="card-body text-center">
+        <a href="{% url 'feature:ticketlist' %}" class="btn btn-secondary ">Continue Shopping</a>
+       </div>
+    </div>
+ </div>
+{% endblock %}

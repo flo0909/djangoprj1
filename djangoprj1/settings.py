@@ -22,7 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 DEBUG = False
-
 if DEBUG == True:
     with open('C:/Users/flori/workspace35/djangoprj1/secret_key.txt') as f:
         SECRET_KEY = f.read().strip()

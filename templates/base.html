@@ -17,14 +17,20 @@
         crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
-    
-    <title>Document</title>
+    <title>Issue Tracker</title>
 </head>
 
-<body>
+<body >
     <nav class="navbar navbar-expand-lg navbar-light grad-02"  >
-        <a class="navbar-brand" href="{% url 'app1:index' %}">Issue Tracker</a>
+        <a class="navbar-brand" href="{% url 'app1:index' %}">
+            <svg class="brand-svg" width="130" height="35">
+                    <rect x="0" y="1" rx="5" ry="5" width="130" height="30"
+                    style="fill:rgb(223, 5, 5);" />
+                  </svg>
+                <p class="brand-text">&nbsp;<em>IssueTracker</em></p>
+            </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,8 +46,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'app1:index' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
+
                 {% endif %}
                 </li>
+
                 {% if 'postslist' in request.path %}
                 <li class="nav-item active" style="font-weight:bold">
                     <a class="nav-link" href="{% url 'app1:postslist' %}">Issues to Fix</a>
@@ -89,12 +97,19 @@
             {%endif%}
         </div>
     </nav>
+   
+
+
+
+
+
 
     {% block content %}{% endblock %}
-    <script src="/static/main.js"></script>
+
     <footer class="footer grad-03">
         <span >&copy Lorem Ipsum 2019</span>
     </footer>
+    <script src="/static/main.js"></script>
 </body>
 
 </html>

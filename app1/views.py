@@ -55,7 +55,7 @@ def updateuserpost(request, userpost_id):
         userpost = UserPost.objects.get(pk=userpost_id)
         form = PostForm(request.POST, instance = userpost)
         form.save()
-        return redirect(reverse('app1:postlist')) 
+        return redirect(reverse('app1:postslist')) 
     else:      
         u_form = {"name": userpost.name, "content":userpost.content} 
         form = PostForm(initial=u_form)

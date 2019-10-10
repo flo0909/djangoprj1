@@ -8,7 +8,7 @@ from django.conf import settings
 import stripe
 
 
-#cart app taken with many thanks from Mr Nestor Villoria's tutorial 
+#cart app taken with many thanks from Mr Nestor Viloria's tutorial 
 # https://www.udemy.com/course/develop-a-shopping-cart-website-with-django-2-and-python-3/
 # parts of code changed by me to fit the purpose and make it functional in context
 
@@ -34,7 +34,6 @@ def add(request, ticket_id):
     return redirect('cart:cart_detail')
 
 def cart_detail(request, total=0, cart_items = None):
-
     try:
         cart = Cart.objects.get(cart_id=cartId(request))
         cart_items = CartItem.objects.filter(cart=cart).order_by('ticket')
@@ -49,6 +48,7 @@ def cart_detail(request, total=0, cart_items = None):
     data_key = settings.STRIPE_PUBLISHABLE_KEY
 
     if request.method == 'POST':
+
         try:
             token = request.POST['stripeToken']
             email = request.POST['stripeEmail']
@@ -72,6 +72,11 @@ def cart_detail(request, total=0, cart_items = None):
                         description=description,
                         customer=customer.id
                         )
+            try:
+                print(cart)
+            except:
+                pass
+            
             cart_items.delete()
             cart.delete()
             return redirect('cart:order')

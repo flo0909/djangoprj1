@@ -13,12 +13,12 @@
 <body>
 
     <div class="container">
-        <div class="row card-top-margin card-bottom-margin">
+        <div class="row" style="margin-bottom: 2em;margin-top:2em;">
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card card-header text-center grad-01">
                         <h5>Progress per Ticket</h5>
-                        Checking for "{{ticketprog.ticket_prog.name}}"
+                        Name: "{{ticketprog.ticket_prog.name}}, Progress:{{ticketprog.progress}}%"
                     </div>
                     <ul class="list-group list-group-flush mx-auto">
                         <li class="list-group-item ">
@@ -33,7 +33,7 @@
                 <div class="card">
                     <div class="card card-header text-center grad-01">
                         <h5>Progress per Ticket</h5>
-                        Checking for "{{ticketprog.ticket_prog.name}}"
+                        Name: "{{ticketprog.ticket_prog.name}}, Progress:{{ticketprog.progress}}%"
                     </div>
                     <ul class="list-group list-group-flush mx-auto">
                         <li class="list-group-item ">
@@ -47,12 +47,12 @@
 
 
     <div class="container">
-        <div class="row card-top-margin card-bottom-margin">
+        <div class="row" style="margin-bottom: 2em;margin-top:2em;">
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card card-header text-center grad-01">
                         <h5>Votes per Ticket</h5>
-                        Checking for "{{ticketprog.ticket_prog.name}}, Progress:{{ticketprog.progress}}%"
+                        Name: "{{ticketprog.ticket_prog.name}}", Votes:{{ticketprog.ticket_prog.votes}}
                     </div>
                     <ul class="list-group list-group-flush mx-auto">
                         <li class="list-group-item ">
@@ -66,7 +66,7 @@
                 <div class="card">
                     <div class="card card-header text-center grad-01">
                         <h5>Votes per Ticket</h5>
-                        Checking for "{{ticketprog.ticket_prog.name}}, Progress:{{ticketprog.progress}}%"
+                        Name: "{{ticketprog.ticket_prog.name}}", Votes:{{ticketprog.ticket_prog.votes}}
                     </div>
                     <ul class="list-group list-group-flush mx-auto">
                         <li class="list-group-item ">
@@ -83,7 +83,7 @@
 
 
     <div class="container">
-        <div class="row card-top-margin card-bottom-margin">
+        <div class="row" style="margin-bottom: 2em;margin-top:2em;">
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card card-header text-center grad-01">
@@ -123,7 +123,6 @@
                     .x(d3.scale.ordinal())
                     .xUnits(dc.units.ordinal)
                     .xAxisLabel("Ticket")
-                    .yAxisLabel("Progress")
                     .yAxis().ticks(4);
 
                 dc.renderAll();
@@ -158,7 +157,6 @@
                     .xUnits(dc.units.ordinal)
                     .elasticY(true)
                     .xAxisLabel("Ticket")
-                    .yAxisLabel("Votes")
                     .yAxis().ticks(4);
 
                 dc.renderAll();
