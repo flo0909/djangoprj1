@@ -3,10 +3,10 @@
 
 <div class="container ">
    <div class="row ">
-      <div class="col-md-12 message-container text-center">
+      <div class="col-md-12 message-container text-center" >
          {%if messages%} 
          {%for message in messages%}
-         <div class="alert alert-{{message.tags}}">{{message}}</div>
+         <div class="alert alert-{{message.tags}}" id="message-container">{{message}}</div>
          {% endfor %}
          {% endif %}
       </div>
@@ -21,14 +21,14 @@
       </div>
    </div>
    <div class="row cards-row">
-      <div class="one card col-xs-10 col-sm-10 col-md-10 col-lg-5">
+      <div class="one card col-xs-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
          <div class="card-body text-center backgr01 ">
             <span class="center-info">You discovered a "bug" in our application?</span>
             <p class="card-text">Post it and we promise to dedicate a part of our time to fix it.</p>
             <a href="{% url 'app1:postslist' %}" class="btn btn-danger stretched-link"id="landing-card-button-01">Go to Requests</a>
          </div>
       </div>
-      <div class="two card col-xs-10 col-sm-10 col-md-10 col-lg-5">
+      <div class="two card col-xs-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
          <div class="card-body text-center backgr01 ">
             <span class="center-info">You have a feature that you want developed?</span>
             <p class="card-text">Post it and if it gets popular we will allocate the time to develop it!</p>

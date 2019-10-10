@@ -213,6 +213,7 @@ body{
  
 }
 .message-container{
+    display:block;
     height:8%;
     margin-top:2em;
     margin-bottom:2em;
@@ -245,6 +246,9 @@ body{
     }
     .card-text{
         font-size:1em;
+        padding-top:30px;
+        padding-bottom:30px;
+        
     }
     .center-info{
         font-size:1.3em;
@@ -259,7 +263,7 @@ body{
         line-height: 1.2em;
     }
 }
-@media only screen and (min-width:768px) and (max-width:1024px){
+@media only screen and (min-width:768px) and (max-width:1023px){
     .landing-text{
         font-size:1.4em;
     }
@@ -269,4 +273,15 @@ body{
     .cards-row{
         margin-left:2em;
     }
+}
+@media only screen and (min-width:1024px) and (max-width:1024px){
+.one{
+    
+    margin-left:2em;
+    padding:0;
+}
+.two{
+    margin-left:2em;
+    padding:0;
+}
 }
