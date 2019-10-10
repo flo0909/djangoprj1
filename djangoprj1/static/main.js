@@ -23,7 +23,11 @@ function outFunc2() {
 
 var5 = document.getElementById("message-container")
 
+if(var5 !== null){
 function hideMessage(){
-    var time01 = setTimeout(function(){var5.style.display = 'none';time01.clearTimeout}, 2000)
+  var time01 = setTimeout(function(){var5.style.display = 'none';time01.clearTimeout}, 2000)
 }
 hideMessage()
+}else{
+  document.write('.')
+}

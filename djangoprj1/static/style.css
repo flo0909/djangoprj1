@@ -274,14 +274,19 @@ body{
         margin-left:2em;
     }
 }
-@media only screen and (min-width:1024px) and (max-width:1024px){
-.one{
-    
-    margin-left:2em;
-    padding:0;
-}
-.two{
-    margin-left:2em;
-    padding:0;
-}
+@media only screen and (min-width:1024px) and (max-width:1920px){
+
+    .top-landing-div{
+        height:12rem;
+    }
+    .one{
+        height:40rem;
+    }
+    .two{
+        height:40rem; 
+    }
+    .card-text{
+        margin-top:6rem;
+        font-size:1.6em;
+    }
 }

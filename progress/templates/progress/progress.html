@@ -91,19 +91,17 @@
                     </div>
                     <ul class="list-group list-group-flush mx-auto">
                         {% for ticket_done in ticket_done %}
-                        <li class="list-group-item ">Tickets
+                        <li class="list-group-item ">Ticket
                             Done:&nbsp;<strong>"{{ticket_done.name}}"</strong>&nbsp;requested
                             by&nbsp;<strong>{{ticket_done.author | capfirst}}</strong></li>
                         {% endfor %}
-                        <li class="list-group-item ">Tickets Done Count :{{ticket_done_count}}</li>
+                        <li class="list-group-item ">Tickets Done Count :&nbsp;{{ticket_done_count}}</li>
                     </ul>
                 </div>
             </div>
 
 
-
             <script>
-
                 var progressData = [
                     { "name": "{{ticketprog.ticket_prog.name}}", "progress": "{{ticketprog.progress}}", "votes": "{{ticketprog.ticket_prog.votes}}" },
                     { "name": "{{ticketSample1.ticket_prog.name}}", "progress": "{{ticketSample1.progress}}", "votes": "{{ticketSample1.ticket_prog.votes}}" },
@@ -171,57 +169,17 @@
                     .group(total_progress_per_ticket);
 
                 dc.renderAll();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </script>
+            
             <div class="container back-button">
                 <div class="row ">
                     <div class="col text-center">
                         <a class="btn btn-secondary" href="{% url 'feature:ticketlist' %}" role="button"><i
-                                class="fa fa-angle-left" style="font-size:20px"></i>Back</a>
+                                class="fa fa-angle-left fontaws" style="font-size:20px"></i>Back</a>
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+
 </body>
 
 {% endblock %}
