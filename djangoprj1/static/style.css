@@ -90,7 +90,7 @@ font-size:0.9em;
     overflow:hidden;
     text-align:center;
     z-index:2;
- }
+}
 .icon{
     position:relative;
     height:30px;
@@ -138,7 +138,7 @@ font-size:0.9em;
     border-radius:0.3rem;
     margin-bottom:0.5rem;
     border-color: #ccc;
- }
+}
 .fa-shopping-cart{
     font-size: 1.6em;
     margin-left:0.2em;
@@ -168,11 +168,11 @@ font-size:0.9em;
 .card-top-margin{
     margin-top:4em;
     border:1px solid  rgb(190, 190, 190);
- }
+}
  .card-bottom-margin{
     margin-bottom:4em;
     border:1px solid  rgb(190, 190, 190);
- }
+}
  .grad-01{
     background-image: linear-gradient(0deg,rgb(243, 243, 243) 0%, rgb(250, 250, 250) 4%, rgb(247, 247, 247) 10%, rgb(247, 247, 247)  75%, rgb(247, 247, 247)  90%,white 97%, rgb(226, 226, 226) 100%);
 
@@ -202,7 +202,6 @@ font-size:0.9em;
     margin-top:2em;
     margin-bottom:4em;
 }
-
 .hide{
     display:none;
     }

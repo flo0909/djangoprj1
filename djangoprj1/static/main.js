@@ -25,5 +25,5 @@ function outFunc2() {
 var5 = document.getElementById("message-container")
 
 $(document).ready(function(){
-$(var5).fadeIn(500).delay(3000).fadeOut(2000);
+$(var5).delay(3000).fadeOut(2000);
 });
