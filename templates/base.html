@@ -17,7 +17,6 @@
         crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <title>Issue Tracker</title>
 </head>
@@ -25,12 +24,13 @@
 <body >
     <nav class="navbar navbar-expand-lg navbar-light grad-02"  >
         <a class="navbar-brand" href="{% url 'app1:index' %}">
-            <svg class="brand-svg" width="130" height="35">
-                    <rect x="0" y="0" rx="5" ry="5" width="130" height="34"
+            <svg class="brand-svg" width="155" height="35">
+                    <rect x="0" y="0" rx="5" ry="5" width="155" height="34"
                     style="fill:rgb(223, 5, 5);" />
                   </svg>
-                <p class="brand-text">&nbsp;<em>IssueTracker</em></p>
+                <p class="brand-text">&nbsp;<i class="fa fa-cog"style="color:yellow;"></i>&nbsp;<em><strong>I</strong><i class="font-weight-normal">ssue</i><strong>T</strong><i class="font-weight-normal">racker</i></em></p>
             </a>
+            <br><br>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

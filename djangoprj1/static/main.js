@@ -21,13 +21,9 @@ function outFunc2() {
 }
 /* Code for hiding the messages */
 
+
 var5 = document.getElementById("message-container")
 
-if(var5 !== null){
-function hideMessage(){
-  var time01 = setTimeout(function(){var5.style.display = 'none';time01.clearTimeout}, 2000)
-}
-hideMessage()
-}else{
-  document.write('.')
-}
+$(document).ready(function(){
+$(var5).fadeIn(500).delay(3000).fadeOut(2000);
+});

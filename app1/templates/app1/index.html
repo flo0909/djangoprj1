@@ -1,42 +1,68 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 
-<div class="container ">
-   <div class="row ">
-      <div class="col-md-12 message-container text-center" >
-         {%if messages%} 
-         {%for message in messages%}
-         <div class="alert alert-{{message.tags}}" id="message-container">{{message}}</div>
-         {% endfor %}
-         {% endif %}
+{%if messages%}
+{%for message in messages%}
+<div class="container-fluid" id="message-container">
+   <div class="row message-container ">
+      <div class="col-md-12 text-center">
+         <div class="alert alert-{{message.tags}}" >{{message}}</div>
       </div>
-  </div>
+   </div>
 </div>
-<div class="container-fluid">
-   <div class="row col-sm-11 col-md-12 ml-1">
-      <div class="jumbotron top-landing-div" id="jumbo">
-         <p class="landing-text">Here you can choose wether to request for a "bug" fix or a feature. If you have discovered a bug in the application please use the "Requests" section for FREE!
+{% endfor %}
+{% endif %}
+
+<div class="container-fluid ">
+
+   <div class="top-info text-center">
+      <br>
+      <p class="mt-4 ml-2 mr-2 top-info-text h4"><em>Here you can choose wether to request 
+         for a "bug" fix or a feature. If you have discovered a bug in the application ,
+          please use the "Requests" section for FREE!
+         If you want us to develop a new feature please navigate to "Features" page.</em>
+      </p>
+   </div>
+
+   <div class="row">
+      <div class="col-md-6 col-lg-6 divone text-center">
+         <div class="three">
+            <br>
+            <div class="centerdiv mt-5">
+               <span class="center-span h4">You discovered a "bug" in our application?</span>
+            </div>
+            <div class=" centerdiv mt-3">
+               <p class="h6">Post it and we promise to dedicate a part of our time to fix it.</p>
+            </div>
+            <a href="{% url 'app1:postslist' %}" class="btn btn-danger stretched-link mt-4"
+               id="landing-card-button-01">Go to Requests</a>
+         </div>
+      </div>
+      <div class="col-md-6 col-lg-6 divone text-center">
+         <div class="four">
+            <br>
+            <div class="centerdiv mt-5">
+               <span class="center-span h4">You have a feature that you want developed?</span>
+            </div>
+            <div class=" centerdiv mt-3">
+               <p class="h6">Post it and if it gets popular we will allocate the time to develop it!</p>
+            </div>
+            <a href="{% url 'feature:ticketlist' %}" class="btn btn-success stretched-link mt-4"
+               id="landing-card-button-02">Go to Features</a>
+         </div>
+      </div>
+   </div>
+   <div class="bottom-info text-center">
+      <br>
+      <p class="mt-4 ml-2 mr-2  h5">Here you can choose wether to request for a "bug" fix or a feature. If you have
+         discovered a bug in the application please use the "Requests" section for FREE!
          If you want us to develop a new feature please navigate to "Features" page.
-         </p>
-      </div>
+      </p>
    </div>
-   <div class="row cards-row">
-      <div class="one card col-xs-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-         <div class="card-body text-center backgr01 ">
-            <span class="center-info">You discovered a "bug" in our application?</span>
-            <p class="card-text">Post it and we promise to dedicate a part of our time to fix it.</p>
-            <a href="{% url 'app1:postslist' %}" class="btn btn-danger stretched-link"id="landing-card-button-01">Go to Requests</a>
-         </div>
-      </div>
-      <div class="two card col-xs-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-         <div class="card-body text-center backgr01 ">
-            <span class="center-info">You have a feature that you want developed?</span>
-            <p class="card-text">Post it and if it gets popular we will allocate the time to develop it!</p>
-            <a href="{% url 'feature:ticketlist' %}" class="btn btn-success stretched-link" id="landing-card-button-02">Go to Features</a>
-         </div>
-      </div>
-   </div>
+
 </div>
+
+
 <script src="/static/main.js"></script>
 
 
