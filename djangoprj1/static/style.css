@@ -216,10 +216,10 @@ font-size:0.9em;
     background-image: linear-gradient(0deg,rgb(173, 171, 171) 0%, rgb(247, 247, 247) 4%, rgb(214, 214, 214) 15%, rgb(214, 214, 214)  70%, rgb(212, 212, 212)   85%,white  96%, rgb(192, 192, 192) 100%); 
 }
 @media only screen and (max-width: 360px){
-    .top-info-text{font-size:1em;margin-top:0.5rem!important;}
+    .top-info-text{font-size:1.25em;margin-top:0.2rem!important;}
 }
 @media only screen and (min-width:361px) and (max-width:767px){
-    .top-info-text{font-size:1.5em;margin-top:0.5rem!important;}
+    .top-info-text{font-size:1.4em;margin-top:0.4rem!important;}
 }
 @media only screen and (min-width:768px) and (max-width:1023px){
     .top-info-text{font-size:1.8em;margin-top:1rem!important;}
