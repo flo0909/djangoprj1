@@ -56,7 +56,7 @@ def register(request):
                 else:
                     if form.is_valid:
                         user = User.objects.create_user(username=username ,email=email, password=password1)
-                        profile = UserProfile.objects.create(user=user, image='/media/default.png')
+                        profile = UserProfile.objects.create(user=user, image='user_images/default.png')
                         messages.success(request, 'You have registered successfully')
                         return redirect(reverse('accounts:login'))
         else:

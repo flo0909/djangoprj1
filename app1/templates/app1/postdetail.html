@@ -5,18 +5,14 @@
 <div class="container ">
    <div class="card card-top-margin ">
       <div class="card-header grad-01 text-center">
-         <h5 class="card-title text-center "><strong>Post Name: {{userpost.name}}</strong></h5>
+         <h5 class="card-title text-center "><strong>Post Name:&nbsp; {{userpost.name}}</strong></h5>
       </div>
       <ul class="list-group list-group-flush">
-         <li class="list-group-item"><i>Post Author: </i><strong>{{userpost.author|capfirst}}</strong>&nbsp;
+         <li class="list-group-item"><i>Post Author:&nbsp; </i><strong>{{userpost.author|capfirst}}</strong>&nbsp;&nbsp;
            
             <span>
-               <img src="/media/{{profile.image}}" class="rounded-circle" alt="My Profile" width="80" height="80" style="margin-bottom:3px;">
+               <img src="https://djangoprj1.s3.amazonaws.com/media/{{profile.image}}" class="rounded-circle" alt="My Profile" width="90" height="90" style="margin-bottom:3px;">
                </span>
-   
-
-
-
          </li>
          <li class="list-group-item"><i><strong>Post Description :</strong></i> {{userpost.content}}</li>
          <li class="list-group-item"><i>Post Votes :</i> <strong>{{userpost.votes}}</strong></li>

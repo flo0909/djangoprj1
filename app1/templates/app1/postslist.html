@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+
 {%if messages%}
 <div class="container ">
    <div class="card card-top-margin card-message mx-auto">
@@ -12,6 +14,7 @@
    </div>
 </div>
 {% endif %}
+
 {% for userpost in userpost %}
 <div class="container">
    <div class="card card-top-margin ">
@@ -19,39 +22,28 @@
          <a class="link-name" href="{% url 'app1:postdetail' userpost.id %}"><i>{{userpost.name}}</i></a>
       </div>
    </div>
-   <ul class="list-group">
-      <li class="list-group-item">Post Author: <strong>{{userpost.author|capfirst}}</strong>
-         
-
+   <ul class="list-group ">
+      <li class="list-group-item">Post Author:&nbsp; <strong>{{userpost.author|capfirst}}</strong>&nbsp;
          {% for profile in profile %}
-
-            {% if profile.user == userpost.author %}
-
-            <span>
-            <img src="/media/{{profile.image}}" class="rounded-circle" alt="My Profile" width="50" height="50" style="margin-bottom:3px;">
-            </span>
-            
-            {% else %}
-            <span class="icon" style="border-radius:4px;width:25px;">
-               <i class="fa fa-user user-icon" style="font-size:20px" ></i>
-           </span>
-
-            {% endif %}
-            
-            {% endfor %}
-
- 
+         {% if profile.user == userpost.author %}
+         <span>
+            <img src="https://djangoprj1.s3.amazonaws.com/media/{{profile.image}}" class="rounded-circle"
+               alt="My Profile" width="50" height="50" style="margin-bottom:3px;">
+         </span>
+         {% endif %}
+         {% endfor %}
       </li>
-      <li class="list-group-item">Date Posted: <strong>{{userpost.date_posted}}</strong></li>
-      <li class="list-group-item">Post Votes :<strong> {{userpost.votes}}</strong></li>
+      <li class="list-group-item">Date Posted:&nbsp; <strong>{{userpost.date_posted}}</strong></li>
+      <li class="list-group-item">Post Votes :&nbsp;<strong> {{userpost.votes}}</strong></li>
       {% if userpost.done %}
-      <li class="list-group-item" style="background-color:rgb(255, 205, 193);"><strong>This post has now been completed!</strong></li>
+      <li class="list-group-item" style="background-color:rgb(255, 205, 193);"><strong>This post has now been
+            completed!</strong></li>
       {% endif %}
    </ul>
 </div>
 {% endfor %}
 <br>
-   <div class="container center-pagination">
+<div class="container center-pagination">
    <nav aria-label="custom-navigation ">
       <ul class="pagination ">
          {% if userpost.has_previous %}
@@ -68,10 +60,12 @@
       </ul>
    </nav>
 </div>
-<div class="container form-container " >
+<div class="container form-container ">
    <div class="card">
-      <div class="card-header text-center grad-01" id="formshow" >
-         <h4 class="text-hover"style="color:rgb(221, 6, 6);"><i>Post a problem that you discovered</i></h4><i class='fa fa-angle-down' style='font-size:24px;color:rgb(221, 6, 6);'></i></div>
+      <div class="card-header text-center grad-01" id="formshow">
+         <h4 class="text-hover" style="color:rgb(221, 6, 6);"><i>Post a problem that you discovered</i></h4><i
+            class='fa fa-angle-down' style='font-size:24px;color:rgb(221, 6, 6);'></i>
+      </div>
       <div class="card-body text-center hide" id="hiddenform">
          <form method="POST">
             {% csrf_token %}
@@ -81,8 +75,6 @@
       </div>
    </div>
 </div>
-
-
 
 <script src="/static/forms.js"></script>
 {% endblock %}

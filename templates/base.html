@@ -77,7 +77,7 @@
                     {{user.username | capfirst}}'s Profile
                 {% if user.userprofile.image %}
                     <span>
-                        <img src="/media/{{user.userprofile.image}}" class="rounded-circle ml-1" alt="My Profile" width="30" height="30" style="margin-bottom:3px;">
+                        <img src="https://djangoprj1.s3.amazonaws.com/media/{{user.userprofile.image}}" class="rounded-circle ml-1" alt="My Profile" width="30" height="30" style="margin-bottom:3px;">
                     </span>
                     {% else %}
                     <span class="icon" style="border-radius:4px;width:25px;">
