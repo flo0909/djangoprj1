@@ -7,8 +7,9 @@
 
       </div>
       <ul class="list-group list-group-flush">
-            <p class="nomargin text-center">If your ticket has some progress you can see ticket stats here:</p>
+            
             {% if not ticket.done %}
+            <p class="nomargin text-center">If your ticket has some progress you can see ticket stats here:</p>
             <div class="card-body text-center">
                <a type="button" class="btn btn-danger "  href="{% url 'progress:progress' ticket.id %}"><i class="fa fa-bar-chart" style="font-size:24px"></i>&nbsp;<em>Ticket Statistics</em></a>
             </div>
