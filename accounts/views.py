@@ -35,9 +35,10 @@ def logout(request):
     return redirect(reverse('app1:index'))
 
 def register(request):
-
-    form = UserRegisterForm(request.POST)
     
+    form = UserRegisterForm(request.POST)
+   
+
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -55,7 +56,7 @@ def register(request):
                 else:
                     if form.is_valid:
                         user = User.objects.create_user(username=username ,email=email, password=password1)
-                        profile = UserProfile.objects.create(user=user, image='/user_images/default.png')
+                        profile = UserProfile.objects.create(user=user, image='https://djangoprj1.s3.eu-west-2.amazonaws.com/media/default.png')
                         messages.success(request, 'You have registered successfully')
                         return redirect(reverse('accounts:login'))
         else:

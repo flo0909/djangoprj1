@@ -234,3 +234,6 @@ font-size:0.9em;
 @media only screen and (min-width:1024px) and (max-width:1920px){
     .top-info-text{font-size:2em;margin-top:1.7rem!important;}
 }
+.one{
+    background-image: url('djangoprj1/djangoprj1/static/images/default.png');
+}
