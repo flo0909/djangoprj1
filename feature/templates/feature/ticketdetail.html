@@ -2,18 +2,27 @@
 {% block content %}
 <div class="container detail-card">
    <div class="card card-top-margin">
-      <div class="card-header grad-01">
-         <h5 class="card-title text-center "><strong>{{ticket.name}}</strong></h5>
+      <div class="card-header grad-01 text-center">
+         <h3 class="card-title text-center" style="margin-top:1em"><strong>{{ticket.name}}</strong></h3>&nbsp;
+
       </div>
       <ul class="list-group list-group-flush">
-         <li class="list-group-item"><i><strong>Ticket Description :&nbsp;</strong></i>{{ticket.content}}</li>
-         <li class="list-group-item"><i>Ticket Author:</i> <strong>{{ticket.author|capfirst}}</strong>
+            <p class="nomargin text-center">If your ticket has some progress you can see ticket stats here:</p>
+            {% if not ticket.done %}
+            <div class="card-body text-center">
+               <a type="button" class="btn btn-danger "  href="{% url 'progress:progress' ticket.id %}"><i class="fa fa-bar-chart" style="font-size:24px"></i>&nbsp;<em>Ticket Statistics</em></a>
+            </div>
+            {% endif %}
+         <li class="list-group-item" style="margin-top:1em;"><i>Ticket Author:&nbsp;</i> <strong>{{ticket.author|capfirst}}</strong>
+         
+         
          
             <span>
                   <img src="https://djangoprj1.s3.amazonaws.com/media/{{profile.image}}" class="rounded-circle" alt="My Profile" width="90" height="90" style="margin-bottom:3px;">
             </span>
 
          </li>
+         <li class="list-group-item"><i><strong>Ticket Description :&nbsp;</strong></i>{{ticket.content}}</li>
          <li class="list-group-item"><i>Ticket Votes:</i> <strong>{{ticket.votes}}</strong></li>
          <li class="list-group-item"><i>Date Posted:</i> <strong>{{ticket.date_posted}}</strong></li>
 
@@ -78,18 +87,14 @@
             </div>
          </li>
       </ul>
-      {% if not ticket.done %}
-      <div class="card-body">
-         <a href="{% url 'progress:progress' ticket.id %}">Check the progress of your ticket</a>
-      </div>
-      {% endif %}
+
    </div>
 </div>
 <div class="container back-button">
    <div class="row ">
       <div class="col text-center">
          <a class="btn btn-secondary" href="{% url 'feature:ticketlist' %}" role="button"><i class="fa fa-angle-left fontaws"
-               style="font-size:20px"></i>Back</a>
+               style="font-size:20px"></i>Back to ticket list page</a>
       </div>
    </div>
 </div>
