@@ -17,7 +17,7 @@
         crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://djangoprj1.s3.eu-west-2.amazonaws.com/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
     <title>Issue Tracker</title>
 </head>
 
@@ -78,6 +78,7 @@
                 {% if user.userprofile.image %}
                     <span>
                         <img src="/media/{{user.userprofile.image}}" class="rounded-circle ml-1" alt="My Profile" width="30" height="30" style="margin-bottom:3px;">
+                        
                     </span>
                     {% else %}
                     <span class="icon" style="border-radius:4px;width:25px;">

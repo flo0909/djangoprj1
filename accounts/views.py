@@ -68,7 +68,7 @@ def register(request):
         
     return render(request, 'accounts/register.html', {"form": form})
 
-# code for userprofile view with many thanks from Mr Corey Schafer's tutorial, changed to match with my app
+# code for userprofile view with many thanks from Mr CoreyMSchafer's tutorial, changed to match with my app
 # https://www.youtube.com/watch?v=CQ90L5jfldw&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=9
 
 @login_required
