@@ -30,6 +30,10 @@
             <span>
             <img src="/media/{{profile.image}}" class="rounded-circle" alt="My Profile" width="50" height="50" style="margin-bottom:3px;">
             </span>
+            {% else %}
+            <span class="icon" style="border-radius:4px;width:25px;">
+               <i class="fa fa-user user-icon" style="font-size:20px" ></i>
+           </span>
 
             {% endif %}
 
