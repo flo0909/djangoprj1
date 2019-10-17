@@ -3,6 +3,7 @@ from .models import Ticket, TicketProgress
 from .forms import TicketForm
 from app1.models import Answer
 from app1.forms import AnswerForm
+from accounts.models import UserProfile
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -12,7 +13,7 @@ from django.core.paginator import Paginator
 
 @login_required
 def ticketlist(request):
-    
+    profile = UserProfile.objects.all()
     ticket_obj = Ticket.objects.order_by('-date_posted')
     paginator = Paginator(ticket_obj, 3)
     page = request.GET.get('page')
@@ -23,13 +24,16 @@ def ticketlist(request):
         instance.author = request.user
         instance.save()
         form = TicketForm()
-    return render(request, 'feature/ticketlist.html', {'ticket':ticket, 'form':form})
+    return render(request, 'feature/ticketlist.html', {'ticket':ticket, 'form':form, 'profile':profile})
 
 @login_required
 def ticketdetail(request, ticket_id):
     answer = 'There is no answer yet'
     ticket = get_object_or_404(Ticket, pk=ticket_id)
-
+    try:
+        profile = get_object_or_404(UserProfile, user=ticket.author)
+    except ObjectDoesNotExist:
+        pass
     try:
         ticketprogress = TicketProgress.objects.get(ticket_prog=ticket_id)
         if ticketprogress.progress == 100:
@@ -46,7 +50,7 @@ def ticketdetail(request, ticket_id):
     except ObjectDoesNotExist:
         pass
 
-    return render(request, 'feature/ticketdetail.html', dict(ticket=ticket, ticketprogress=ticketprogress, answer=answer))
+    return render(request, 'feature/ticketdetail.html', dict(ticket=ticket, ticketprogress=ticketprogress, answer=answer, profile=profile))
 
 
 @login_required
