@@ -21,9 +21,21 @@
    </div>
    <ul class="list-group">
       <li class="list-group-item">Post Author: <strong>{{userpost.author|capfirst}}</strong>
-         <div class="icon">
-            <i class="fa fa-user user-icon" style="font-size:24px" ></i>
-        </div>
+         
+
+         {% for profile in profile %}
+
+            {% if profile.user == userpost.author %}
+
+            <span>
+            <img src="/media/{{profile.image}}" class="rounded-circle" alt="My Profile" width="50" height="50" style="margin-bottom:3px;">
+            </span>
+
+            {% endif %}
+
+            {% endfor %}
+
+ 
       </li>
       <li class="list-group-item">Date Posted: <strong>{{userpost.date_posted}}</strong></li>
       <li class="list-group-item">Post Votes :<strong> {{userpost.votes}}</strong></li>
@@ -53,12 +65,8 @@
 </div>
 <div class="container form-container " >
    <div class="card">
-      
       <div class="card-header text-center grad-01" id="formshow" >
-         
-         
          <h4 class="text-hover"style="color:rgb(221, 6, 6);"><i>Post a problem that you discovered</i></h4><i class='fa fa-angle-down' style='font-size:24px;color:rgb(221, 6, 6);'></i></div>
-     
       <div class="card-body text-center hide" id="hiddenform">
          <form method="POST">
             {% csrf_token %}

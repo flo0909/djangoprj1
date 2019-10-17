@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+
+   <div class="row">
+
+      <div class="container form-container col-md-6 col-lg-5 ">
+      <div class="card card-top-margin">
+         <div class="card-header text-center">
+            <h4>User Profile</h4>
+         </div>
+         <div class="card-body text-center">
+
+               <span>
+                     <img src="/media/{{user.userprofile.image}}" class="rounded" alt="My Profile" width="150" height="150" style="margin-bottom:3px;">
+               </span>
+
+         </div>
+         <div class="card-body text-center">
+            <ul class="list-group list-group-flush">
+                     <li class="list-group-item"><i>Name: &nbsp;</i><strong>{{user.username | capfirst}}</strong></li>
+                     <li class="list-group-item"><i>Email:&nbsp;</i><strong>{{user.email}}</strong></li>
+                     <li class="list-group-item"><i>Date Joined:&nbsp;</i><strong>{{user.date_joined}}</strong></li>
+                     <li class="list-group-item"><i>User Is Admin:&nbsp;</i><strong>{{user.is_superuser}}</strong></li>
+            </ul>
+         </div>
+
+      </div>
+   </div>
+
+
+<div class="container form-container col-md-6 col-lg-5 ">
+   <div class="card card-top-margin">
+      <div class="card-header text-center">
+         <h4>User Profile Update</h4>
+      </div>
+      <div class="card-body text-center">
+         {%if messages%}
+         {%for message in messages%}
+         <div class="alert alert-{{message.tags}}">{{message}}</div>
+         {% endfor %}
+         {% endif %}
+
+         <form method="POST" enctype="multipart/form-data">
+            {%csrf_token%}    
+            {{userform | crispy }}
+            {{userprofileform | crispy }}
+            <input type="submit" class="btn btn-info" value="Update">
+         </form>
+
+      </div>
+   </div>
+</div>
+
+</div>
+</div>
+{% endblock %}

@@ -4,6 +4,7 @@ from .forms import PostForm, AnswerForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from accounts.models import UserProfile
 from django.contrib import auth , messages
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
@@ -15,6 +16,10 @@ def index(request):
 
 @login_required
 def postslist(request):
+
+
+    profile = UserProfile.objects.all()
+    
     posts_obj = UserPost.objects.order_by('-date_posted')
     paginator = Paginator(posts_obj, 3)
     page = request.GET.get('page')
@@ -25,22 +30,30 @@ def postslist(request):
         instance.author = request.user
         instance.save()
         form = PostForm()
-    return render(request, 'app1/postslist.html', {'userpost':userpost, 'form':form})
+    return render(request, 'app1/postslist.html', {'userpost':userpost, 'form':form, 'profile':profile })
 
 
 @login_required
 def postdetail(request, userpost_id):
+    
+    
     answer = 'There is no answer yet'
     userpost = get_object_or_404(UserPost, pk=userpost_id)
+    try:
+        profile = get_object_or_404(UserProfile, user=userpost.author)
+        
+    except ObjectDoesNotExist:
+        pass
     try:
         answer = Answer.objects.get(name=userpost.name)
     except ObjectDoesNotExist:
         pass
-    return render(request, 'app1/postdetail.html', {'userpost':userpost, 'answer':answer})
+    return render(request, 'app1/postdetail.html', {'userpost':userpost, 'answer':answer , 'profile':profile})
 
 @login_required
 def deleteuserpost(request, userpost_id):
     form = UserPost.objects.filter(pk=userpost_id)
+    
     if request.method == 'POST':
         form.delete()
     return redirect(reverse('app1:postslist'))
