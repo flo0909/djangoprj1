@@ -35,8 +35,9 @@
       </li>
       <li class="list-group-item">Date Posted: <strong>{{ticket.date_posted}}</strong></li>
       <li class="list-group-item">Ticket Votes : <strong>{{ticket.votes}}</strong></li>
+      
       {% if ticket.done %}
-      <li class="list-group-item" style="background-color:rgb(255, 205, 193);"><strong>This ticket has now been
+      <li class="list-group-item" style="background-color:rgb(255, 205, 193, 0.7);"><strong>This ticket has now been
             completed!</strong></li>
       {% endif %}
    </ul>

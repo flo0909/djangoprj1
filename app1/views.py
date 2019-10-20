@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from feature.models import Ticket
 from .models import UserPost, Answer
 from .forms import PostForm, AnswerForm
 from django.shortcuts import get_object_or_404
@@ -11,7 +12,13 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 def index(request):
-    return render(request, 'app1/index.html')
+
+    profile = UserProfile.objects.all()
+    ticket = Ticket.objects.exclude(votes__lt=200)
+    
+  
+
+    return render(request, 'app1/index.html', {'profile':profile, 'ticket':ticket})
 
 
 @login_required
