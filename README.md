@@ -7,7 +7,7 @@
 
 **Cards Background credits** - Photo by Ferdinand Stöhr on Unsplash.  
 
-**ser Face-1 credits** - Photo by x ) on Unsplash.  
+**User Face-1 credits** - Photo by x ) on Unsplash.  
 
 **User Face-2 credits** - Photo by Sergio de Paula on Unsplash.  
 
