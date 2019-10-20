@@ -23,9 +23,7 @@ def index(request):
 
 @login_required
 def postslist(request):
-    
     profile = UserProfile.objects.all()
-    
     posts_obj = UserPost.objects.order_by('-date_posted')
     paginator = Paginator(posts_obj, 3)
     page = request.GET.get('page')

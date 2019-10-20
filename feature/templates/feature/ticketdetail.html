@@ -3,7 +3,7 @@
 <div class="container detail-card">
    <div class="card card-top-margin">
       <div class="card-header grad-01 text-center">
-         <h3 class="card-title text-center" style="margin-top:1em"><strong>{{ticket.name}}</strong></h3>&nbsp;
+         <h4 class="card-title text-center" style="margin-top:0.5em"><strong>{{ticket.name}}</strong></h4>
 
       </div>
       <ul class="list-group list-group-flush">
@@ -11,10 +11,10 @@
             {% if not ticket.done %}
             <p class="nomargin text-center">If your ticket has some progress you can see ticket stats here:</p>
             <div class="card-body text-center">
-               <a type="button" class="btn btn-danger "  href="{% url 'progress:progress' ticket.id %}"><i class="fa fa-bar-chart" style="font-size:24px"></i>&nbsp;<em>Ticket Statistics</em></a>
+               <a href="{% url 'progress:progress' ticket.id %}"><button type="button" class="btn btn-danger" id="progress" ><i class="fa fa-bar-chart" style="font-size:24px"></i>&nbsp;<em>Ticket Statistics</em></button></a>
             </div>
             {% endif %}
-         <li class="list-group-item" style="margin-top:1em;"><i>Ticket Author:&nbsp;</i> <strong>{{ticket.author|capfirst}}</strong>
+         <li class="list-group-item" style="margin-top:0.5em;"><i>Ticket Author:&nbsp;</i> <strong>{{ticket.author|capfirst}}</strong>
          
          
          
