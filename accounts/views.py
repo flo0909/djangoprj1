@@ -18,6 +18,7 @@ def login(request):
         form = UserLoginForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
+        # authenticates user comparing with registered users
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
@@ -34,11 +35,12 @@ def logout(request):
     auth.logout(request)
     messages.success(request, 'You are now logged out!')
     return redirect(reverse('app1:index'))
-
+# register function, validates if passwords match and 
+# the username and email are not already registered
 def register(request):
     
     form = UserRegisterForm(request.POST)
-    
+
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -56,6 +58,7 @@ def register(request):
                 else:
                     if form.is_valid:
                         user = User.objects.create_user(username=username ,email=email, password=password1)
+                        #creates profile objects for user with a default user image
                         profile = UserProfile.objects.create(user=user, image='user_images/default.png')
                         messages.success(request, 'You have registered successfully')
                         return redirect(reverse('accounts:login'))
@@ -71,6 +74,8 @@ def register(request):
 # code for userprofile view with many thanks from Mr CoreyMSchafer's tutorial, changed to match with my app
 # https://www.youtube.com/watch?v=CQ90L5jfldw&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=9
 
+# takes the userform and user update form and saves the update informations
+# takes the order if exists and displays the info in userprofile.html
 @login_required
 def userprofile(request):
     order=None

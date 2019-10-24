@@ -1,5 +1,5 @@
-/* Code for changing innerText learned from  https://www.w3schools.com/jsref/event_onmouseover.asp*/
-
+// Code for changing innerText learned from  https://www.w3schools.com/jsref/event_onmouseover.asp*/
+//changes the inner text for index page buttons
 var1 = document.getElementById("landing-card-button-01").onmouseover = function() {overFunc1()};
 var2 = document.getElementById("landing-card-button-01").onmouseout = function() {outFunc1()};
 
@@ -19,8 +19,7 @@ function overFunc2() {
 function outFunc2() {
     document.getElementById("landing-card-button-02").innerText="Go to Features";
 }
-/* Code for hiding the messages */
-
+/* Code for fading the messages */
 
 var5 = document.getElementById("message-container")
 

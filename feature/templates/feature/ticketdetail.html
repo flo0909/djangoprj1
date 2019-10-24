@@ -29,7 +29,7 @@
 
 
          {% if ticket.done %}
-         <li class="list-group-item"><i>&nbsp;Please find the new feature notes <a href="{% url 'feature:ticketdone' %}">here</a></i></li>
+         <li class="list-group-item"><i>&nbsp;Please find the new feature notes <a href="{% url 'feature:ticketdone' ticket.id %}">here</a></i></li>
 
          {% else %}
          <li class="list-group-item"><i>Ticket Progress:</i> <strong>{{ticketprogress.progress}}%&nbsp</strong><progress

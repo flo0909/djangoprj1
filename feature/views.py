@@ -116,6 +116,7 @@ def ticketanswer(request, ticket_id):
             return redirect(reverse('feature:ticketlist'))
     return render(request, 'feature/ticketanswer.html', {'form':form, 'answer':answer, 'ticket':ticket})
 
-def ticketdone(request):
+def ticketdone(request, ticket_id):
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
      
-    return render(request, 'feature/ticketdone.html')
+    return render(request, 'feature/ticketdone.html', {'ticket': ticket})

@@ -12,15 +12,11 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 def index(request):
+    return render(request, 'app1/index.html')
 
-    profile = UserProfile.objects.all()
-    ticket = Ticket.objects.exclude(votes__lt=200)
-    
-  
-
-    return render(request, 'app1/index.html', {'profile':profile, 'ticket':ticket})
-
-
+# sends the user profile model to post list page
+# assigns the posts objects to a instance of posts to be able to use the pagination
+# uses the Post Form to add a Post
 @login_required
 def postslist(request):
     profile = UserProfile.objects.all()
@@ -36,10 +32,9 @@ def postslist(request):
         form = PostForm()
     return render(request, 'app1/postslist.html', {'userpost':userpost, 'form':form, 'profile':profile })
 
-
+# displays post details informations and if the post has been answered
 @login_required
 def postdetail(request, userpost_id):
-    
     
     answer = 'There is no answer yet'
     userpost = get_object_or_404(UserPost, pk=userpost_id)
@@ -53,6 +48,7 @@ def postdetail(request, userpost_id):
     except ObjectDoesNotExist:
         pass
     return render(request, 'app1/postdetail.html', {'userpost':userpost, 'answer':answer , 'profile':profile})
+
 
 @login_required
 def deleteuserpost(request, userpost_id):
@@ -78,7 +74,8 @@ def updateuserpost(request, userpost_id):
         form = PostForm(initial=u_form)
         
     return render(request, 'app1/postupdate.html',{'form':form})
-
+# Validates the voting system    
+# Takes voting users and saves as string in "voted" comparing with the request.user when voting
 @login_required
 def postresult(request, userpost_id):
     mylist = ''
@@ -99,7 +96,7 @@ def postresult(request, userpost_id):
             userpost.save()
 
     return redirect(reverse('app1:postdetail', args=(userpost.id,)))
-
+# uses the Answer form to post an answer to post  
 def answer(request, userpost_id):
     answer = []
     form = AnswerForm(request.POST)

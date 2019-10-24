@@ -22,6 +22,7 @@ class CartItem(models.Model):
 
 class Order(models.Model):
     order_number = models.CharField(max_length=250)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
     user = models.ForeignKey(User, on_delete=models.CASCADE )
     added = models.DateField(auto_now_add=True)
     user_is_vip = models.BooleanField(default=True)

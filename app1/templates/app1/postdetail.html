@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+<!--The post details-->
 <div class="container ">
    <div class="card card-top-margin ">
       <div class="card-header grad-01 text-center">
@@ -17,10 +17,11 @@
          <li class="list-group-item"><i><strong>Post Description :</strong></i> {{userpost.content}}</li>
          <li class="list-group-item"><i>Post Votes :</i> <strong>{{userpost.votes}}</strong></li>
          <li class="list-group-item"><i>Post Date :</i> <strong>{{userpost.date_posted}}</strong></li>
+         <!--Conditional if a post has been done user can see the release notes -->
          {% if userpost.done %}
          <li class="list-group-item"><i>Please find the solved post notes <a href="">here</a></i></li>
-      
          {% endif %}
+         <!--Conditional if a post has been answered -->
          {% if answer.content %}
          <li class="list-group-item"><i>Post Answer :</i> <strong>{{answer.content}}</strong></li>
          {% endif %}
@@ -44,6 +45,7 @@
          </div>
       </div>
       {% endif %}
+      <!--Conditional for voting for a post using the input value  -->
       {% if not user  ==  userpost.author %} 
       <div class="row text-center">
          <div class="card-body text-center">

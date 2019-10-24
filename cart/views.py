@@ -14,13 +14,16 @@ import stripe
 # https://www.udemy.com/course/develop-a-shopping-cart-website-with-django-2-and-python-3/
 # parts of code changed by me to fit the purpose and make it functional in context
 
-
+#creates a session that will be host the cart items
+#uses the session key as the cart id
 def cartId(request):
     cart = request.session.session_key
     if not cart:
         cart = request.session.get(request)
     return cart
-
+# takes ticket objects, creates a cart using the session created by previous function
+# assigns the cart items to cart
+# saves the cart
 def add(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
     try:
@@ -35,6 +38,11 @@ def add(request, ticket_id):
         cart_item = CartItem.objects.create(ticket=ticket, cart=cart, quantity=1)
     return redirect('cart:cart_detail')
 
+
+# connects the cart items with stripe backend
+# completes the purchase
+# creates and saves the order, informations accessible in admin-order
+# conditional if the order exists, user is VIP and gets a discount
 def cart_detail(request, total=0, cart_items = None):
     try:
         cart = Cart.objects.get(cart_id=cartId(request))
@@ -87,6 +95,7 @@ def cart_detail(request, total=0, cart_items = None):
             try:
                 order=Order.objects.create(
                     order_number=token,
+                    total=total,
                     user=request.user,
                     user_is_vip=True,
 	                off = 0.10,
@@ -111,6 +120,7 @@ def cart_detail(request, total=0, cart_items = None):
             return False,e
     return render(request, 'cart/cart.html', dict(total=total, cart_items=cart_items, data_key = data_key, stripe_total = stripe_total, description = description))
 
+# changes the quantity of cart items from cart
 def remove(request, ticket_id):
     cart = Cart.objects.get(cart_id=cartId(request))
     ticket = get_object_or_404(Ticket, id=ticket_id)
@@ -128,7 +138,7 @@ def emptyCart(request):
 	cart.delete()
 	return redirect('cart:cart_detail')
 
-
+# redirects after purchase to an order page
 def order(request):
     return render(request, 'cart/order.html')
 

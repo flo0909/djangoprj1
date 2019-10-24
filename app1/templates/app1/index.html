@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<!--Displays messages if they exists -->
 {%if messages%}
 {%for message in messages%}
 <div class="container-fluid" id="message-container">
@@ -22,7 +22,7 @@
          If you want us to develop a new feature please navigate to "Features" page.</em>
       </p>
    </div>
-
+<!--The two options of the projects, posts-free and features-paid  -->
    <div class="row">
       <div class="col-md-6 col-lg-6 divone text-center">
          <div class="three">
@@ -51,7 +51,7 @@
          </div>
       </div>
    </div>
-
+<!--The user stories section -->
    <div class="bottom-info container-fluid">
       <div class="row " >
             <div class="col-md-6 mt-2 mb-2" >
@@ -86,6 +86,6 @@
    </div>
 </div>
 
-
+<!--Js script for changing inner text of buttons on hover and message fade -->
 <script src="/static/main.js"></script>
 {% endblock %}

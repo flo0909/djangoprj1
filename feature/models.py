@@ -6,7 +6,7 @@ class Ticket(models.Model):
     name = models.CharField(max_length=250)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.30)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.50)
     date_posted = models.DateTimeField(default=timezone.now)
     done = models.BooleanField(default=False)
     votes = models.IntegerField(default=0)
