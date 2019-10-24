@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserLoginForm, UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.core.exceptions import ObjectDoesNotExist
 from .models import UserProfile
+from cart.models import Order
 
 # code for login and register views with many thanks from Mr Brad Traversy's tutorial. 
 # https://www.udemy.com/course/python-django-dev-to-deployment/
@@ -37,8 +38,7 @@ def logout(request):
 def register(request):
     
     form = UserRegisterForm(request.POST)
-   
-
+    
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -73,6 +73,7 @@ def register(request):
 
 @login_required
 def userprofile(request):
+    order=None
     if request.method == 'POST':
         userform = UserUpdateForm(request.POST, instance=request.user)
         userprofileform = ProfileUpdateForm(request.POST,request.FILES, instance=request.user.userprofile)
@@ -86,6 +87,10 @@ def userprofile(request):
     else:
         userform = UserUpdateForm(instance=request.user)
         userprofileform = ProfileUpdateForm(instance=request.user.userprofile)
+    try:
+        order = Order.objects.filter(user=request.user)
 
+    except ObjectDoesNotExist:
+        messages.warning(request, 'You dont have any orders')
 
-    return render(request, 'accounts/userprofile.html',dict(userform=userform, userprofileform=userprofileform) )
+    return render(request, 'accounts/userprofile.html',dict(userform=userform, userprofileform=userprofileform, order=order) )

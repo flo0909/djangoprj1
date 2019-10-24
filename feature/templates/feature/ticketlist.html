@@ -31,11 +31,14 @@
          </span>
          {% endif %}
          {% endfor %}
-        
+
       </li>
       <li class="list-group-item">Date Posted: <strong>{{ticket.date_posted}}</strong></li>
       <li class="list-group-item">Ticket Votes : <strong>{{ticket.votes}}</strong></li>
-      
+      <li class="list-group-item">Ticket Price £ : <strong>{{ticket.price}}</strong></li>
+     {% if order %}
+      <li class="list-group-item"style="background-color:rgb(229, 255, 204, 0.7);">Price off £ : <strong>{{order.off}}</strong></li>
+    {% endif %}
       {% if ticket.done %}
       <li class="list-group-item" style="background-color:rgb(255, 205, 193, 0.7);"><strong>This ticket has now been
             completed!</strong></li>
@@ -64,7 +67,8 @@
 <div class="container form-container ">
    <div class="card card-bottom-margin">
       <div class="card-header text-center grad-01" id="formshow">
-         <h4 class="text-hover" style="color:rgb(221, 6, 6);">Add a request for a feature</h4><i class='fa fa-angle-down' style='font-size:24px;color:rgb(221, 6, 6);'></i>
+         <h4 class="text-hover" style="color:rgb(221, 6, 6);">Add a request for a feature</h4><i
+            class='fa fa-angle-down' style='font-size:24px;color:rgb(221, 6, 6);'></i>
       </div>
       <div class="card-body text-center hide" id="hiddenform">
          <form method="POST">

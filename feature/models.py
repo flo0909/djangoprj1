@@ -14,6 +14,8 @@ class Ticket(models.Model):
     def __str__(self):
         return self.name
 
+
+
 class TicketProgress(models.Model):
     ticket_prog = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     progress = models.IntegerField()

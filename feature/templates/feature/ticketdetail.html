@@ -4,31 +4,32 @@
    <div class="card card-top-margin">
       <div class="card-header grad-01 text-center">
          <h4 class="card-title text-center" style="margin-top:0.5em"><strong>{{ticket.name}}</strong></h4>
-
       </div>
       <ul class="list-group list-group-flush">
-            
-            {% if not ticket.done %}
-            <p class="nomargin text-center">If your ticket has some progress you can see ticket stats here:</p>
-            <div class="card-body text-center">
-               <a href="{% url 'progress:progress' ticket.id %}"><button type="button" class="btn btn-danger" id="progress" ><i class="fa fa-bar-chart" style="font-size:24px"></i>&nbsp;<em>Ticket Statistics</em></button></a>
-            </div>
-            {% endif %}
-         <li class="list-group-item" style="margin-top:0.5em;"><i>Ticket Author:&nbsp;</i> <strong>{{ticket.author|capfirst}}</strong>
-         
-         
-         
-            <span>
-                  <img src="https://djangoprj1.s3.amazonaws.com/media/{{profile.image}}" class="rounded-circle" alt="My Profile" width="90" height="90" style="margin-bottom:3px;">
-            </span>
 
+         {% if not ticket.done %}
+         <p class="nomargin text-center">If your ticket has some progress you can see ticket stats here:</p>
+         <div class="card-body text-center">
+            <a href="{% url 'progress:progress' ticket.id %}"><button type="button" class="btn btn-danger"
+                  id="progress"><i class="fa fa-bar-chart" style="font-size:24px"></i>&nbsp;<em>Ticket
+                     Statistics</em></button></a>
+         </div>
+         {% endif %}
+         <li class="list-group-item" style="margin-top:0.5em;"><i>Ticket Author:&nbsp;</i>
+            <strong>{{ticket.author|capfirst}}</strong>
+
+            <span>
+               <img src="https://djangoprj1.s3.amazonaws.com/media/{{profile.image}}" class="rounded-circle"
+                  alt="My Profile" width="90" height="90" style="margin-bottom:3px;">
+            </span>
          </li>
          <li class="list-group-item"><i><strong>Ticket Description :&nbsp;</strong></i>{{ticket.content}}</li>
          <li class="list-group-item"><i>Ticket Votes:</i> <strong>{{ticket.votes}}</strong></li>
          <li class="list-group-item"><i>Date Posted:</i> <strong>{{ticket.date_posted}}</strong></li>
 
+
          {% if ticket.done %}
-         <li class="list-group-item"><i>&nbsp;Please find the new feature notes <a href="">here</a></i></li>
+         <li class="list-group-item"><i>&nbsp;Please find the new feature notes <a href="{% url 'feature:ticketdone' %}">here</a></i></li>
 
          {% else %}
          <li class="list-group-item"><i>Ticket Progress:</i> <strong>{{ticketprogress.progress}}%&nbsp</strong><progress
@@ -55,7 +56,8 @@
          <div class="card-body">
             <form method="POST" action="{% url 'feature:ticketupdate' ticket.id %}">
                {% csrf_token %}
-               <button type="submit" class="btn btn-info"><i class="fa fa-edit fontaws" style="font-size:20px;"></i>Update
+               <button type="submit" class="btn btn-info"><i class="fa fa-edit fontaws"
+                     style="font-size:20px;"></i>Update
                </button>
             </form>
          </div>
@@ -66,7 +68,8 @@
          <form method="POST" action="{%url 'feature:ticketresult' ticket.id%}">
             {% csrf_token %}
             <input type="hidden" name='value' value="1">
-            <button type="submit" class="btn btn-info"><i class="fa fa-thumbs-up fontaws"></i>Vote for this ticket to get it
+            <button type="submit" class="btn btn-info"><i class="fa fa-thumbs-up fontaws"></i>Vote for this ticket to
+               get it
                done faster</button>
          </form>
       </div>
@@ -83,7 +86,8 @@
          <li class="list-group-item">
             <div class="card-body">
                <p>You can support our work by buying the ticket that you want to see it done faster! </p>
-               <a class="btn btn-success" href="{% url 'cart:add' ticket.id %}"><i class="fa fa-shopping-cart fontaws "></i>See
+               <a class="btn btn-success" href="{% url 'cart:add' ticket.id %}"><i
+                     class="fa fa-shopping-cart fontaws "></i>See
                   it done ASAP! - Add to cart</a>
             </div>
          </li>
@@ -94,8 +98,8 @@
 <div class="container back-button">
    <div class="row ">
       <div class="col text-center">
-         <a class="btn btn-secondary" href="{% url 'feature:ticketlist' %}" role="button"><i class="fa fa-angle-left fontaws"
-               style="font-size:20px"></i>Back to ticket list page</a>
+         <a class="btn btn-secondary" href="{% url 'feature:ticketlist' %}" role="button"><i
+               class="fa fa-angle-left fontaws" style="font-size:20px"></i>Back to ticket list page</a>
       </div>
    </div>
 </div>

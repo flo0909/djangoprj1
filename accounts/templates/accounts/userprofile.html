@@ -5,54 +5,76 @@
 
    <div class="row">
 
-      <div class="container form-container col-md-6 col-lg-5 ">
-      <div class="card card-top-margin">
-         <div class="card-header text-center">
-            <h4>User Profile</h4>
-         </div>
-         <div class="card-body text-center">
+      <div class="container form-container col-md-6 col-lg-5">
+         <div class="card card-top-margin">
+            <div class="card-header text-center">
+               <h4>User Profile
+                  {% if order %}
+                  <i class='fa fa-certificate' style='color:gold;'></i></h4>VIP
+               {% endif %}
+            </div>
+            <div class="card-body text-center">
 
                <span>
-                     <img src="https://djangoprj1.s3.amazonaws.com/media/{{user.userprofile.image}}" class="rounded" alt="My Profile" width="150" height="150" style="margin-bottom:3px;">
+                  <img src="https://djangoprj1.s3.amazonaws.com/media/{{user.userprofile.image}}" class="rounded"
+                     alt="My Profile" width="150" height="150" style="margin-bottom:3px;">
                </span>
 
+            </div>
+            <div class="card-body text-center">
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><i>Name: &nbsp;</i><strong>{{user.username | capfirst}}</strong></li>
+                  <li class="list-group-item"><i>Email:&nbsp;</i><strong>{{user.email}}</strong></li>
+                  <li class="list-group-item"><i>Date Joined:&nbsp;</i><strong>{{user.date_joined}}</strong></li>
+                  <li class="list-group-item"><i>User Is Admin:&nbsp;</i><strong>{{user.is_superuser}}</strong></li>
+               </ul>
+            </div>
          </div>
-         <div class="card-body text-center">
-            <ul class="list-group list-group-flush">
-                     <li class="list-group-item"><i>Name: &nbsp;</i><strong>{{user.username | capfirst}}</strong></li>
-                     <li class="list-group-item"><i>Email:&nbsp;</i><strong>{{user.email}}</strong></li>
-                     <li class="list-group-item"><i>Date Joined:&nbsp;</i><strong>{{user.date_joined}}</strong></li>
-                     <li class="list-group-item"><i>User Is Admin:&nbsp;</i><strong>{{user.is_superuser}}</strong></li>
-            </ul>
+      </div>
+
+
+      <div class="container form-container col-md-6 col-lg-5 ">
+         <div class="card card-top-margin">
+            <div class="card-header text-center">
+               <h4>User Profile Update</h4>
+            </div>
+            <div class="card-body text-center">
+               {%if messages%}
+               {%for message in messages%}
+               <div class="alert alert-{{message.tags}}">{{message}}</div>
+               {% endfor %}
+               {% endif %}
+
+               <form method="POST" enctype="multipart/form-data">
+                  {%csrf_token%}
+                  {{userform | crispy }}
+                  {{userprofileform | crispy }}
+                  <input type="submit" class="btn btn-info" value="Update">
+               </form>
+
+            </div>
          </div>
-
       </div>
+      {% if order %}
+      {% for order in order %}
+      <div class="container form-container col-md-6 col-lg-5 ">
+         <div class="card card-top-margin">
+            <div class="card-header text-center">
+               <h5><i>Order: &nbsp;</i><strong>{{order}}</strong></h5>
+            </div>
+            <div class="card-body text-center">
+               <ul class="list-group list-group-flush">
+
+                  <li class="list-group-item"><i>Order Date:&nbsp;</i><strong>{{order.added}}</strong></li>
+                  <li class="list-group-item"><i>Buyer:&nbsp;</i><strong>{{order.user | capfirst }}</strong></li>
+                  <li class="list-group-item"><i>User is now VIP:&nbsp;</i><strong>{{order.user_is_vip}}</strong></li>
+
+               </ul>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+      {% endif %}
    </div>
-
-
-<div class="container form-container col-md-6 col-lg-5 ">
-   <div class="card card-top-margin">
-      <div class="card-header text-center">
-         <h4>User Profile Update</h4>
-      </div>
-      <div class="card-body text-center">
-         {%if messages%}
-         {%for message in messages%}
-         <div class="alert alert-{{message.tags}}">{{message}}</div>
-         {% endfor %}
-         {% endif %}
-
-         <form method="POST" enctype="multipart/form-data">
-            {%csrf_token%}    
-            {{userform | crispy }}
-            {{userprofileform | crispy }}
-            <input type="submit" class="btn btn-info" value="Update">
-         </form>
-
-      </div>
-   </div>
-</div>
-
-</div>
 </div>
 {% endblock %}

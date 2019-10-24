@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 import os
-from .models import CartItem, Cart
+from .models import CartItem, Cart, Order
+from django.contrib import auth, messages
 from django.core.exceptions import ObjectDoesNotExist
 from feature.models import Ticket
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 import stripe
@@ -37,8 +39,18 @@ def cart_detail(request, total=0, cart_items = None):
     try:
         cart = Cart.objects.get(cart_id=cartId(request))
         cart_items = CartItem.objects.filter(cart=cart).order_by('ticket')
+        if Order is not None:
+            order = Order.objects.filter(user=request.user).first()
+         
         for cart_item in cart_items:
-            total += cart_item.ticket.price * cart_item.quantity
+            if order is not None and order.user_is_vip == True:
+    
+                cart_item.ticket.price = cart_item.ticket.price - order.off
+            else:
+                cart_item.ticket.price = cart_item.ticket.price
+
+            total += cart_item.ticket.price * cart_item.quantity 
+    
     except ObjectDoesNotExist:
         pass
 
@@ -73,10 +85,25 @@ def cart_detail(request, total=0, cart_items = None):
                         customer=customer.id
                         )
             try:
-                print(cart)
+                order=Order.objects.create(
+                    order_number=token,
+                    user=request.user,
+                    user_is_vip=True,
+	                off = 0.10,
+                    email = email,
+                    billingName = billingName,
+                    billingAddress1 = billingAddress1,
+                    billingcity = billingcity,
+                    billingPostcode = billingPostcode,
+                    billingCountry = billingCountry,
+                    shippingName = shippingName,
+                    shippingAddress1 = shippingAddress1,
+                    shippingcity = shippingcity,
+                    shippingPostcode = shippingPostcode,
+                    shippingCountry = shippingCountry,
+                )
             except:
                 pass
-            
             cart_items.delete()
             cart.delete()
             return redirect('cart:order')

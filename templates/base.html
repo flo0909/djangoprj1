@@ -74,7 +74,7 @@
                 {% if user.is_authenticated %}
             <a class="nav-link nomargin"  href="{% url 'accounts:userprofile' %}">
                 <span class="navbar-text mr-5" >
-                    {{user.username | capfirst}}'s Profile
+                    {{user.username | capfirst}}'s Profile 
                 {% if user.userprofile.image %}
                     <span>
                         <img src="https://djangoprj1.s3.amazonaws.com/media/{{user.userprofile.image}}" class="rounded-circle ml-1" alt="My Profile" width="30" height="30" style="margin-bottom:3px;">
@@ -108,10 +108,7 @@
             {%endif%}
         </div>
     </nav>
-   
-
     {% block content %}{% endblock %}
-
     <footer class="footer grad-03">
         <span >&copy Lorem Ipsum 2019</span>
     </footer>

@@ -29,15 +29,14 @@ body{
     
 }
 .three:hover{
-    background-size: 99.7% 99.6%;
+    background-size: 99.6% 99.5%;
 }
 .four:hover{
-    background-size: 99.7% 99.6%;
+    background-size: 99.6% 99.5%;
 }
 .four{
     height:20rem;
     border-radius:5px;
-    background-color:rgb(231, 240, 113);
     background-image: url('/static/images/card-back8.jpg');
     background-size: 100% 100%;
     color:white;

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from .models import Ticket, TicketProgress
+from cart.models import Order
 from .forms import TicketForm
 from app1.models import Answer
 from app1.forms import AnswerForm
@@ -11,8 +12,10 @@ from django.contrib import auth , messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 
+
 @login_required
 def ticketlist(request):
+    order = Order.objects.filter(user=request.user).first()
     profile = UserProfile.objects.all()
     ticket_obj = Ticket.objects.order_by('-date_posted')
     paginator = Paginator(ticket_obj, 3)
@@ -24,12 +27,13 @@ def ticketlist(request):
         instance.author = request.user
         instance.save()
         form = TicketForm()
-    return render(request, 'feature/ticketlist.html', {'ticket':ticket, 'form':form, 'profile':profile})
+    return render(request, 'feature/ticketlist.html', {'ticket':ticket, 'form':form, 'profile':profile, 'order':order})
 
 @login_required
 def ticketdetail(request, ticket_id):
     answer = 'There is no answer yet'
     ticket = get_object_or_404(Ticket, pk=ticket_id)
+    
     try:
         profile = get_object_or_404(UserProfile, user=ticket.author)
     except ObjectDoesNotExist:
@@ -111,3 +115,7 @@ def ticketanswer(request, ticket_id):
             answer = Answer.objects.create(name=ticket.name, content=request.POST['content'])
             return redirect(reverse('feature:ticketlist'))
     return render(request, 'feature/ticketanswer.html', {'form':form, 'answer':answer, 'ticket':ticket})
+
+def ticketdone(request):
+     
+    return render(request, 'feature/ticketdone.html')
