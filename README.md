@@ -20,7 +20,7 @@
 ***The Project***
 
 I have taken inspiration from the 'Issue Tracker' idea provided.  
-The project is using Django 2.2.5. , Python 3.7.3,  Html5 , CSS3 , JavaScript, DC , D3 , Stripe, Bootstrap4, Crispy Forms, the rest please find in requirements.txt.  
+The project is using Django 2.2.5. , Python 3.7.3, PostgreSQL provided by Heroku , Html5 , CSS3 , JavaScript, DC , D3 , Stripe, Bootstrap4, Crispy Forms, the rest please find in requirements.txt.  
 The user images are uploaded into an AWS bucket.  
 
 ***The UX***
@@ -30,19 +30,15 @@ to navigate further.The user has two main options - the free features where he/s
 or the paid request for a feature development. For accessing both, the user needs to create an account and to use an email  
 address and a password.The creating account form uses validation to make sure the informations are correct.    
 After creating an account, the user can use a form to post a request to fix a problem discovered in the main application  
-, or can use a form to post a feature request in the feature requests section. While posting is free and the site admin is promising to dedicate a part of time to develop the feature, to be able to speed up the feature development, the users can buy it and have it done as soon as possible.Also the users can vote for both sections, for posts and feature requests, voting is free for both sections. The user is able to update the informations from their own posts/feature requests. The users can get an answer at their post/request from the site admin. 
+, or can use a form to post a feature request in the feature requests section. While posting is free and the site admin is promising to dedicate a part of time to develop the feature, to be able to speed up the feature development, the users can buy it and have it done as soon as possible. Also the users can vote for both sections, for posts and feature requests, voting is free for both sections. The user is able to update the informations from their own posts/feature requests. The users can get an answer at their post/request from the site admin. 
 At the feature requests section the user is able to access a ticket stats page that compares the chosen feature with another two sample tickets that are currently in use. The ticket without any progress will not be able to display any stats and the user will be redirected to the feature list page.   
 After deciding if they want to support a specific feature they can contribute to the development by adding to cart.The use is able to modify the amount of support that they want to contribute with , by increasing the cart quantity of the same product or choosing different features if they decide to do so.  
-The user can use the stripe form to complete the payment and are redirected to an order complete page where they can continue contribute to the desired feature especially because after completing the first purchase the user gets a VIP status that grants a fixed discount to all future feature requests. 
+The user can use the stripe form to complete the payment and are redirected to an order complete page where they can continue contribute to the desired feature especially because after completing the first purchase the user gets a VIP status that grants a fixed discount to all future feature requests.  
+The app is responsive , tested on main mobile device sizes and desktops and is using a "mobile-first" design.
 
 
 
 
-
-
-
-
- 
 **Project Deployed** - https://djangoprj1.herokuapp.com.  
 **Wireframes credits** - I have used Gimp to create the wireframes for the project  
 **Default Icon credits** - I have used Gimp to create the default User Icon  
