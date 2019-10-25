@@ -14,7 +14,15 @@
 11 The codes that I have taken from external sources are credited in the files comments  
 12 The project is deployed on Heroku - please find link below.  
 13 The passwords are not included in the deployed code of the project or in the repository.The Debug mode is False.  
+
+
+**The Project**  
+I have taken inspiration from the 'Issue Tracker' idea provided.  
+The project is using Django 2.2.5. Html5 , CSS3 , JavaScript, DC , D3 , Stripe,  the rest please find in requirements.txt.  
+The user images are uploaded into an AWS bucket.  
  
+
+
 
 
 
