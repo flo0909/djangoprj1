@@ -1,4 +1,11 @@
-**Django Project** - Issue Tracker.  
+# Django Project 
+### Issue Tracker.  
+
+
+
+
+
+
  
 **Project Deployed** - https://djangoprj1.herokuapp.com.
 
