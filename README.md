@@ -8,8 +8,8 @@
 
  
 **Project Deployed** - https://djangoprj1.herokuapp.com.
-
-
+**Default Icon credits** - I have used Gimp to create the default User Icon
+**Font credits** - I have used few font awesome fonts  
 **Background credits** - Photo by Brandi Redd on Unsplash.   
 **Cards Background credits** - Photo by Ferdinand Stöhr on Unsplash.  
 **User Face-1 credits** - Photo by x ) on Unsplash.  
