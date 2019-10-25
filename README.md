@@ -1,5 +1,4 @@
-# Django Project 
-### Issue Tracker.  
+# Django Project ## - Issue Tracker.  
 
 
 
