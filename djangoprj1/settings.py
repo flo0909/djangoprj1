@@ -22,7 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
+# when Debug is True the project can be run locally
+# otherwise gets the secret key from environment variables set .
 DEBUG = False
+
 if DEBUG == True:
     with open('C:/Users/flori/workspace35/djangoprj1/secret_key.txt') as f:
         SECRET_KEY = f.read().strip()
@@ -133,6 +137,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
+
+#AWS settings for S3 Bucket
 AWS_S3_OBJECT_PARAMETERS = {
     'Expires':'Thu, 31 Dec 2099 20:00 GMT',
     'CacheControl': 'max-age=94608000',
@@ -145,16 +152,15 @@ AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_DEFAULT_ACL = None
 
-
+#static files settings
 STATIC_ROOT =  os.path.join(BASE_DIR,'static')      
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'djangoprj1/static')
 ]
 
-#STATICFILES_LOCATION = 'static'
-#STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
+#media files settings
 MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
@@ -162,12 +168,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-
+#stripe environment variables
 STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY']
 STRIPE_PUBLISHABLE_KEY = os.environ['STRIPE_PUBLISHABLE_KEY']
 
 
-
+# heroku deployment database app
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)

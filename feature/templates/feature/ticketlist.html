@@ -12,7 +12,7 @@
    </div>
 </div>
 {% endif %}
-
+<!--Using a for loop to display the list of requested features-->
 {% for ticket in ticket %}
 <div class="container">
    <div class="card card-top-margin">
@@ -47,6 +47,7 @@
 </div>
 {% endfor %}
 <br>
+<!--The pagination container-->
 <div class="container center-pagination">
    <nav aria-label="custom-navigation">
       <ul class="pagination ">
@@ -64,6 +65,7 @@
       </ul>
    </nav>
 </div>
+<!--Form for posting a new request for a feature-->
 <div class="container form-container ">
    <div class="card card-bottom-margin">
       <div class="card-header text-center grad-01" id="formshow">
@@ -79,6 +81,6 @@
       </div>
    </div>
 </div>
-
+<!--Js script for displaying the request feature form-->
 <script src="/static/forms.js"></script>
 {% endblock %}

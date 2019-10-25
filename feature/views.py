@@ -12,7 +12,9 @@ from django.contrib import auth , messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 
-
+# sends the user profile model to feature list page
+# assigns the ticket objects to a instance of ticket to be able to use the pagination
+# uses the Ticket Form to add a Ticket
 @login_required
 def ticketlist(request):
     order = Order.objects.filter(user=request.user).first()
@@ -28,12 +30,12 @@ def ticketlist(request):
         instance.save()
         form = TicketForm()
     return render(request, 'feature/ticketlist.html', {'ticket':ticket, 'form':form, 'profile':profile, 'order':order})
-
+# displays feature details informations and if the ticket has been answered
+# sends the profile model information to ticket detail page
 @login_required
 def ticketdetail(request, ticket_id):
     answer = 'There is no answer yet'
     ticket = get_object_or_404(Ticket, pk=ticket_id)
-    
     try:
         profile = get_object_or_404(UserProfile, user=ticket.author)
     except ObjectDoesNotExist:
@@ -53,7 +55,6 @@ def ticketdetail(request, ticket_id):
         answer = Answer.objects.get(name=ticket.name)
     except ObjectDoesNotExist:
         pass
-
     return render(request, 'feature/ticketdetail.html', dict(ticket=ticket, ticketprogress=ticketprogress, answer=answer, profile=profile))
 
 
@@ -64,7 +65,7 @@ def ticketdelete(request, ticket_id):
         form.delete()
     return redirect(reverse('feature:ticketlist'))
 
-
+# updates the ticket
 @login_required
 def ticketupdate(request, ticket_id):
 
@@ -82,7 +83,8 @@ def ticketupdate(request, ticket_id):
         form = TicketForm(initial=u_form)
         
     return render(request, 'feature/ticketupdate.html',{'form':form})
-
+# Validates the voting system    
+# Takes voting users and saves as string in "voted" comparing with the request.user when voting
 @login_required
 def ticketresult(request, ticket_id):
     mylist = ''
@@ -102,7 +104,7 @@ def ticketresult(request, ticket_id):
             ticket.voted  = mylist + savedVoted
             ticket.save()
     return redirect(reverse('feature:ticketdetail', args=(ticket.id,)))
-
+# uses the Answer form to post an answer to post 
 def ticketanswer(request, ticket_id):
     answer = []
     form = AnswerForm(request.POST)
@@ -115,7 +117,7 @@ def ticketanswer(request, ticket_id):
             answer = Answer.objects.create(name=ticket.name, content=request.POST['content'])
             return redirect(reverse('feature:ticketlist'))
     return render(request, 'feature/ticketanswer.html', {'form':form, 'answer':answer, 'ticket':ticket})
-
+#if a ticket is done redirects to a page with ticket notes
 def ticketdone(request, ticket_id):
     ticket = get_object_or_404(Ticket, pk=ticket_id)
      

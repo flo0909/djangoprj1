@@ -20,7 +20,8 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <title>Issue Tracker</title>
 </head>
-
+<!--Navbar with conditionals for displaying e.g. if the user is logged in-only the logout page -->
+<!--Also displays the active link using the request.path -->
 <body >
     <nav class="navbar navbar-expand-lg navbar-light grad-02" style="padding-top:0!important;" >
         <a class="navbar-brand" href="{% url 'app1:index' %}">

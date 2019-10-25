@@ -4,23 +4,18 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 
 
-
+#takes 2 sample tickets and compares them to the user ticket
 def progress(request, ticket_id ):
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     ticket_done = Ticket.objects.all().filter(done='True')
     ticket_done_count = Ticket.objects.all().filter(done='True').count()
     try:
         ticketprog = TicketProgress.objects.get(ticket_prog=ticket)
-        
-
     except ObjectDoesNotExist:
         return redirect(reverse('feature:ticketlist'))
     try:
-
         ticketSample1 = TicketProgress.objects.all().filter(progress__lte='99')[0]
         ticketSample2 = TicketProgress.objects.all().filter(progress__lte='99')[1]
-        
-   
     except:
         pass
 
