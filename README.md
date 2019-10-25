@@ -36,7 +36,9 @@ After deciding if they want to support a specific feature they can contribute to
 The user can use the stripe form to complete the payment and are redirected to an order complete page where they can continue contribute to the desired feature especially because after completing the first purchase the user gets a VIP status that grants a fixed discount to all future feature requests.  
 The app is responsive , tested on main mobile device sizes and desktops and is using a "mobile-first" design.
 
+***Testing***
 
+Unit tests done using Django TestCase.
 
 
 **Project Deployed** - https://djangoprj1.herokuapp.com.  
