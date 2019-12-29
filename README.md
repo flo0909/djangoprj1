@@ -20,7 +20,7 @@
 ***The Project***
 
 I have taken inspiration from the 'Issue Tracker' idea provided.  
-The project is using Django 2.2.5. , Python 3.7.3, PostgreSQL provided by Heroku , Html5 , CSS3 , JavaScript, DC , D3 , Stripe, Bootstrap4, Crispy Forms, the rest please find in requirements.txt.  
+The project is using Django 3.0.1. , Python 3.7.3, PostgreSQL provided by Heroku , Html5 , CSS3 , JavaScript, DC , D3 , Stripe, Bootstrap4, Crispy Forms, the rest please find in requirements.txt.  
 The user images are uploaded into an AWS bucket.  
 
 ***The UX***
